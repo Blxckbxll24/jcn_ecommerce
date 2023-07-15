@@ -1,0 +1,40 @@
+
+.container1 {
+    text-align: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .top-images img {
+    width: 400px;
+    height: 200px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    object-fit: cover;
+    border-radius: 25px;
+
+ 
+
+  }
+  .top-images img:hover{
+      transform: scale(1.2);
+  }
+
+  .bottom-images img {
+    width: 400px;
+    height: 200px;
+    margin: 10px;
+    cursor: pointer;
+    transition: all 0.3s;
+    object-fit: cover; 
+    border-radius: 25px;     
+    
+  }
+  .bottom-images img:hover{
+      transform: scale(1.2);
+  }
+
+  .link{
+      cursor: pointer;
+  }

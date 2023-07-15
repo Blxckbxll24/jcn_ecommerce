@@ -1,0 +1,29 @@
+
+.cuadro{
+    width: 15%;
+    padding: 5px;
+    margin: 10px;
+    border-radius: .5rem;
+    background: black;
+}
+.formato{
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+}
+.find{
+    width: 15%;
+    padding: 5px;
+    margin: 10px;
+    border-radius: .5rem;
+    background: black;
+}
+.cuadricula{
+    justify-content: center;
+    display: flex;
+    padding: 10px;
+}
+.botones{
+    justify-items: flex-end;
+    padding-top: 200px;
+}

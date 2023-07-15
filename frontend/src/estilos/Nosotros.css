@@ -1,0 +1,26 @@
+
+.INFO h1{
+    margin: 10px 15px;
+}
+
+#info-correa {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    clear: both;
+}
+.infocorrea-1 img{
+    width: auto;
+    height: 700px;
+    padding: 0 15%;
+}
+.infocorrea-2{
+    text-align: justify;
+    justify-content: safe;
+    clear: both;
+    margin: 0 25px;
+}
+.infocorrea-2 img {
+    width: auto;
+    height: 320px;
+    transform: translate(10%,0%);
+}

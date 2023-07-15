@@ -1,0 +1,135 @@
+
+body .links {
+    list-style: none;
+}
+
+body li {
+    display: inline-block;
+    padding: 0 10px;
+}
+
+body li:hover {
+    transform: scale(1.1);
+}
+
+body a {
+    font-size: 700;
+    color: #eceff1;
+    text-decoration: none;
+
+}
+
+body a:hover {
+    color: #aef696;
+    ;
+}
+.INFO1 h1 {
+    margin: 10px 15px;
+    font-size: 20px;
+}
+
+#info-correa {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    clear: both;
+}
+
+.infocorrea img {
+    width: auto;
+    height: 500px;
+    padding: 0 15%;
+}
+
+.infocorrea2 {
+    text-align: justify;
+    justify-content: safe;
+    clear: both;
+    margin: 0 25px;
+}
+
+.agregar-carrito {
+    position: absolute;
+    border-radius: 50px;
+    width: 20%;
+    padding: 10px 0;
+    margin-top: 10px;
+    display: block;
+    transform: translate(50%, 50%);
+    color: white;
+    background-color: #8EC680;
+    
+
+}
+
+.agregar-carrito img {
+    width: auto;
+    height: 25px;
+}
+.imput-cont {
+    display: grid;
+    grid-template-columns: 1fr, 1fr, 1fr;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1cm 3cm;
+
+}
+
+#b1 {
+    width: 50px;
+    height: 80px;
+    background-color: transparent;
+    border: none;
+    transition: (1, 7);
+    transform: translate(400%, 50%);
+
+}
+
+#b1 img {
+    width: auto;
+    height: 50px;
+
+
+}
+
+#b1:hover {
+    cursor: pointer;
+}
+
+#b2 {
+    width: 2cm;
+    height: 1cm;
+    background-color: aqua;
+    transform: translate(300%, 50%);
+}
+
+#b3 {
+    width: 50px;
+    height: 60px;
+    background-color: transparent;
+    border: none;
+    transform: translate(500%, 50%);
+}
+
+#b3 img {
+    width: auto;
+    height: 50px;
+
+}
+
+#b3:hover {
+    cursor: pointer;
+}
+
+.agregar-carrito:hover {
+    background-color: #618957;
+}
+#precio {
+    text-align: center;
+    font-size: 25px;
+    transform: translate(-5%, 70%);
+    border-radius: 15px;
+    border: #000000;
+}
+.infocorrea2 h2{
+    font-size: 20px;
+}

@@ -1,0 +1,57 @@
+
+    .cont {
+        display: flex;
+      }
+  
+      .iconos {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        
+      }
+  
+      .iconos img {
+        margin-bottom: 10px;
+        width: 200px;
+        height: 200px;
+       
+      }
+  
+      .ask-cont {
+        margin-left: auto;
+        display: flex;
+        flex-direction: column;
+        
+
+      }
+  
+      .input-text {
+        padding: 10px;
+        margin-top: 25px;
+        margin-bottom: 10px;
+        height: 700px;
+        border-radius: 20%;
+        border-width: 10px;
+        background-color: #183e8f;
+      }
+  
+      .send-button {
+        padding: 5px;
+        background-color: #183e8f;
+        color: white;
+        border:none;
+        width: 15%;
+        cursor: pointer;
+        border-color: black;
+        border-radius: 50px;
+        border-width: 5px;
+        
+      }
+
+      h2 .nom{
+
+        text-align: center;
+        padding-top: 3%;
+        font-size: 35px;
+
+      }

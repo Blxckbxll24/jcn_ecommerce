@@ -1,0 +1,33 @@
+.cadenas{
+    margin: 10px;
+    padding: 5px;
+    justify-content: center;    
+    display: flex;
+    
+}
+.login{
+    background-color: #8EC680;
+    width: 40%;
+    padding: 10px;
+    border-radius: .4rem;
+}
+.btn{
+    width: 100%;
+    font-weight: bold;
+}
+.btn:hover{
+    background-color:#5c1e1e ;
+    font-weight: bold;
+}
+.redes img{
+    width: 10%;
+    cursor: pointer;
+}
+p .uno {
+    text-align: center;
+    font-weight: bold;
+}
+.metodos{
+    display: inline-flex;
+    width: 38%;
+}
