@@ -8,7 +8,6 @@ function Compra() {
   return (
     <>
       <Encabezado />
-      <Navbar />
         <main>
           <section className="INFO1">
             <h1>CATEGORIAS &gt; ACCESORIOS</h1>

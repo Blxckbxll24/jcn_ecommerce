@@ -9,7 +9,6 @@ function Medicamentos() {
         <>
         <>
             <Encabezado />
-            <Navbar />
             <h1>-Medicamentos-</h1>
             <CMedicamentos />
            

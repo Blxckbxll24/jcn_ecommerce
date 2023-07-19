@@ -1,10 +1,10 @@
-
+/* 
 .header{
     background-color: #f23f09;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 85px;
+    height: 75px;
     padding: 5px 10%;
 }
 .header .logo{
@@ -30,9 +30,89 @@
     display: inline-block;
     
 }
-input {
+.busqueda input {
     border-radius: 10px;
     width: 20cm;
     height: 1cm;
     text-align: center;
-}
+} */
+header {
+    background-color: red;
+    color: white;
+    padding: 5px 10%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  
+  .headerimg img {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .header h1 {
+    margin-left: 10px;
+  }
+  
+  /* Estilos para el navbar */
+  .navbar {
+    background-color:red; /* Color café, puedes cambiarlo por el que desees */
+    padding: 10px; /* Añadir un espacio interno al navbar */
+  }
+  
+  /* Cambiar el color del texto en el navbar */
+  .navbar-nav .nav-link {
+    color: #fff; /* Texto en color blanco, puedes cambiarlo por otro color */
+    margin: 0 10px; /* Añadir espacios horizontales entre las opciones del menú */
+  }
+  
+  /* Cambiar el color del texto cuando se pasa el cursor por encima */
+  .navbar-nav .nav-link:hover {
+    color: #f8f9fa; /* Color más claro, puedes cambiarlo por otro color */
+  }
+  
+  /* Cambiar el color de fondo del menú desplegable */
+  .dropdown-menu {
+    background-color: #f8f9fa; /* Color gris claro, puedes cambiarlo por otro color */
+    border: 1px solid #ddd; /* Añadir un borde al menú desplegable */
+    width: 200px; /* Ajustar el ancho del menú desplegable */
+  }
+  
+  /* Cambiar el color del texto en el menú desplegable */
+  .dropdown-menu .dropdown-item {
+    color: #333; /* Texto en color oscuro, puedes cambiarlo por otro color */
+  }
+  
+  /* Cambiar el color del texto cuando se pasa el cursor por encima en el menú desplegable */
+  .dropdown-menu .dropdown-item:hover {
+    background-color: #964B00; /* Color café (el mismo que el del navbar), puedes cambiarlo */
+    color: #fff; /* Texto en color blanco, puedes cambiarlo por otro color */
+  }
+  
+  /* Estilos para la barra de búsqueda */
+  .busqueda {
+    padding: 10px;
+  }
+  
+  .form-control {
+    border-radius: 20px;
+    font-size: 16px;
+    text-align: center;
+    outline: none !important;
+    box-shadow: none !important;
+    transition: all ease .3s;
+    -webkit-transition: all ease .3s;
+  }
+  
+  .btn {
+    border-radius: 20px;
+  }
+  
+  /* Estilos para el ícono de perfil y carrito */
+  .perfil svg,
+  .carrito svg {
+    width: 30px;
+    height: 30px;
+    color: white;
+    margin-left: 10px;
+  }

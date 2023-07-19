@@ -9,8 +9,7 @@ function Accesorios() {
         <>
         <>
             <Encabezado />
-            <Navbar />
-            <h1>-Accesorios-</h1>
+            <h1>-Accesorios-</h1>  
             <CAccesorios />
            
         </>

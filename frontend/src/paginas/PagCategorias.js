@@ -8,7 +8,6 @@ function PagCategorias() {
     return (
         <>
             <Encabezado />
-            <Navbar />
             <h1>-Categorias-</h1>
             <Categorias2/>
             <Footer/>

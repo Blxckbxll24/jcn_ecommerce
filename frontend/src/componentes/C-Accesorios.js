@@ -31,7 +31,8 @@ function CAccesorios() {
                     return <>
 
                        
-<div className="card">
+<div className="card"
+key={accesorios.id_Producto}>
   <img src={require('../imagenes/productos/'+accesorios.fotos)} alt="Nombre del producto" />
   <div className="card-body">
     <h5 className="card-title">{accesorios.Nombre_Producto}</h5>

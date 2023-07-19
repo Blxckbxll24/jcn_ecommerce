@@ -9,7 +9,6 @@ function Higiene() {
         <>
         <>
             <Encabezado />
-            <Navbar />
             <h1>-Higiene-</h1>
             <CHigiene />
            

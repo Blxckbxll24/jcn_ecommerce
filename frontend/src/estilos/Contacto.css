@@ -1,5 +1,5 @@
 
-    .cont {
+    /* .cont {
         display: flex;
       }
   
@@ -54,4 +54,127 @@
         padding-top: 3%;
         font-size: 35px;
 
+      } */
+
+      .around {
+        background: #b1bc5e;
+        color: #fff;
+        line-height: 1.6;
+        font-family: 'Quicksand', sans-serif;
+        padding: 0 1.5em;
+      }
+      
+      .content {
+        max-width: 1050px;
+        margin-left: auto;
+        margin-right: auto;
+        padding: 1.5em;
+      }
+      
+      .more{
+        list-style: none;
+        padding: 0;
+      }
+      
+      .logo {
+        text-align: center;
+        font-size: 3em;
+        color: black;
+      }
+      
+      .contact-wrapper {
+        box-shadow: 0 0 20px 0 rgba(195, 155, 155, 0.959);
+      }
+      
+      .contact-wrapper > * {
+        padding: 1em;
+      }
+      
+      .contact-form {
+        background: #efebeb97;
+        color: black;
+        font-weight: bold;
+        font-size: 17px;
+      }
+      
+      .contact-form form {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+      
+      .contact-form form .tele {
+        display: block;
+      }
+      
+      .contact-form form .worth {
+        margin: 0;
+        padding: 1em;
+      }
+      
+      .contact-form form .block {
+        grid-column: 1 / 3;
+      }
+      
+      .contact-form form .nabe,
+      .contact-form form .speak,
+      .contact-form form .gurls {
+        width: 100%;
+        padding: .7em;
+        border: none;
+        background: none;
+        outline: 0;
+        color: #191313;
+        border-bottom: 1px solid #d63031;
+        font-size: 17px;
+      }
+      .contact-form form .gurls{
+        width: 210%;
+      }
+      .contact-form form .nabe {
+        background: #ff0421;
+        border: 0;
+        text-transform: uppercase;
+        padding: 1em;
+        color: white;
+        cursor: pointer;
+      }
+      
+      .contact-form form .nabe:hover,
+      .contact-form form .nabe:focus {
+        background: #822525;
+        color: #fff;
+        transition: background-color 1s ease-out;
+        outline: 0;
+      }
+      
+      /* CONTACT INFO */
+      .contact-info {
+        background: #4fb25e;
+        color: rgb(237, 229, 229);
+        font-weight: bold;
+        font-size: 18px;
+      }
+      
+      .contact-info .mov, .contact-info .more, .contact-info p {
+        text-align: center;
+        margin: 0 0 1rem 0;
+      }
+      
+      /* LARGE SIZE */
+      @media(min-width: 700px) {
+        .around {
+            padding: 0 4em;
+        }
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+        }
+        .contact-wrapper > * {
+            padding: 2em;
+        }
+        .contact-info .mov,
+        .contact-info .more,
+        .contact-info .wanna {
+            text-align: left;
+        }
       }

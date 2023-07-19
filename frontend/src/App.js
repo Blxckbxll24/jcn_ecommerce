@@ -18,6 +18,9 @@ import LoginAdmin from './paginas/Login_admin';
 import ACategorias from './paginas/AdminCategoria';
 import AProductos from './paginas/AdminProductos';
 import Ausers from './paginas/AdminUsers';
+import Todos from './paginas/Todos';
+import PrivateRoute from './componentes/Ruta-Privada';
+import APedidos from './paginas/AdminPedidos';
 
 
 function App() {
@@ -42,6 +45,10 @@ function App() {
       <Route path='/admincategorias' element={<ACategorias/>}></Route>
       <Route path='/adminproductos' element={<AProductos/>}></Route>
       <Route path='/adminusers' element={<Ausers/>}></Route>
+      <Route path='/variedad' element={<Todos/>}></Route>
+      <Route path='/adminpedidos' element={<APedidos/>}></Route>
+      {/* <Route path="/loginadmin" element={<PrivateRoute element={<LoginAdmin />} />} />
+        <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} /> */}
 
 
     </Routes>

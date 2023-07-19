@@ -1,4 +1,4 @@
-body{
+/* body{
     background-color: #fdf4c1da;
 
 }
@@ -38,7 +38,7 @@ body{
 }
 .form-control {
     padding: 10px; /* Adjusted padding value */
-    font-size: 25px;
+    /* font-size: 25px;
     width: 90%;
     border-radius: .5rem;
     overflow: scroll;
@@ -58,8 +58,8 @@ body{
 }
 .link{
     color: white;
-}
-.link:hover{
+} */ 
+/* .link:hover{
     color: white;
 }
 .boton:hover{
@@ -98,4 +98,170 @@ padding-left: 100px;
     padding: 10px 15px;
     margin-top:5%;
 
+} */
+
+.box{
+    position: relative;
+    width: 500px;
+    height: 420px;
+    background: #b59b9b;
+    border-radius: 8px;
+    overflow: hidden;
+    margin-top: 100px;
+    margin-left: 520px;
+    margin-bottom: 80px;    
+}
+.box::before{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg,transparent,
+    transparent,#45f3ff,#45f3ff,#45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+}
+.box::after{
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 380px;
+    height: 420px;
+    background: linear-gradient(0deg,transparent,
+    transparent,#45f3ff,#45f3ff,#45f3ff);
+    z-index: 1;
+    transform-origin: bottom right;
+    animation: animate 6s linear infinite;
+    animation-delay:-3s ;
+}
+@keyframes animate{
+    0%{
+        transform: rotate(0deg);
+    }
+    100%{
+        transform: rotate(360deg);
+    }
+}
+.box form{
+    position: absolute;
+    inset: 5px;
+    background:  #86715c;
+    padding: 0px 70px;
+    border-radius: 8px;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+}
+.box form h2{
+    color: #fff;
+    font-weight: 500;
+    font-size: 40px;
+    text-align: center;
+    letter-spacing: 0.1em;
+    margin: 10px;
+}
+.box form .inputBox{
+    position: relative;
+    width: 300px;
+    margin-top:45px;
+}
+.box form .inputBox input{
+    position: relative;
+    width: 100%;
+    padding: 20px 10px 10px;
+    background: transparent;
+    outline: none;
+    border: none;
+    box-shadow: none;
+    color: #23242a;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+    z-index: 10;
+}
+.box form .inputBox span{
+    position: absolute;
+    left: 0;
+    padding: 20px 10px 10px;
+    pointer-events: none;
+    color: #fbf3f3;
+    font-size: 1.2em;
+    letter-spacing: 0.05em;
+    transition: 0.5s;
+}
+.box form .inputBox input:valid ~ span,
+.box form .inputBox input:focus ~ span{
+    color: #fff;
+    font-size: 0.95em;
+    transform: translateY(-24px);
+}
+.box form .inputBox i{
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 123%;
+    height: 2px;
+    background: #fff;
+    border-radius: 4px;
+    overflow: hidden;
+    transition:0.5s;
+    pointer-events: none;
+}
+.box form .inputBox input:valid ~ span ~ i,
+.box form .inputBox input:focus ~ span ~ i{
+    height: 40px;
+
+}
+.box form .links{
+    display: flex;
+    justify-content: space-between;
+}
+.box form .links a{
+    margin: 15px 0;
+    font-size: 1.3em;
+    color: #f3ebeb;
+    text-decoration: none;
+}
+.box form .links a:hover
+.box form .links a:nth-child(2){
+    color: #fff;
+}
+.box form .entrar[type="submit"]
+{
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    background: #fff8f8;
+    cursor: pointer;
+    font-size: 1.2em;
+    border-radius: 4px;
+    font-weight: 600;
+    width: 100%;
+    margin-top: 10px;
+}
+.boton{
+    margin-top: 10px;
+    padding: 10px;
+    border-radius:4px;
+    border: none;
+    font-size: 18px;
+}
+.boton:hover{
+    background-color: rgb(248, 223, 223);
+}
+.link{
+    color: black;
+}
+.link:hover{
+    color: black;
+    text-decoration: underline;
+  }
+  *{
+    margin: 0;
+    padding: 0;
+    font-family:'Times New Roman', Times, serif;
 }

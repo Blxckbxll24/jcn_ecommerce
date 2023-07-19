@@ -22,16 +22,15 @@ function Inicio() {
   return (
     <>
       <Encabezado />
-      <Navbar />
       <div className="container11">
         <main>
           <div className="imagenes">
-            <img src={require('../imagenes/imagen 1.jpg')} alt="Imagen 1" />
-            <img src={require('../imagenes/imagen 2.jpg')} alt="Imagen 2" />
-            <img src={require('../imagenes/imagen 3.jpg')} alt="Imagen 3" />
+            <img src={require('../imagenes/imagen1.jpg')} alt="Imagen 1" />
+            <img src={require('../imagenes/imagen2.jpg')} alt="Imagen 2" />
+            <img src={require('../imagenes/imagen3.jpg')} alt="Imagen 3" />
           </div>
           <div className="container_1">
-            <img className="image" src={require('../imagenes/imagen 1.jpg')} alt="imagen principal" />
+            <img className="image" src={require('../imagenes/imagen1.jpg')} alt="imagen principal" />
             <p className="dos">
               En King Kang Veterinary Clinic, nos apasiona proporcionar cuidado de alta calidad y compasión a las mascotas que son parte de su familia. Somos una clínica veterinaria de vanguardia ubicada en el corazón de la ciudad, y nos enorgullece ofrecer una amplia gama de servicios médicos y de bienestar para gatos, perros, aves y pequeños mamíferos.
               Nuestro equipo de médicos veterinarios altamente capacitados y amantes de los animales está comprometido con la salud y el bienestar de sus mascotas. Con años de experiencia en medicina veterinaria, nos esforzamos por mantenernos actualizados con los avances más recientes en la atención veterinaria para brindarle el mejor tratamiento posible.
@@ -47,7 +46,7 @@ function Inicio() {
 
               ¡Gracias por elegir a King Kang Veterinary Clinic para el cuidado de su mascota! Esperamos poder brindarle una experiencia excepcional y mantener a su compañero feliz y saludable.
             </p>
-            <img className="image_2" src={require('../imagenes/imagen 1.jpg')} alt="imagen principal" />
+            <img className="image_2" src={require('../imagenes/imagen2.jpg')} alt="imagen principal" />
           </div>
         </main>
 

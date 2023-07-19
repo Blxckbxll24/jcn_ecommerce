@@ -37,7 +37,6 @@ function Registro() {
   return (
     <>
       <Encabezado />
-      <Navbar />
 
       <div className="cadenas">
         <form className="login" action="" onSubmit={registrar}>

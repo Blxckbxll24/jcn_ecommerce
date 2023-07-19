@@ -9,7 +9,6 @@ function Producto() {
     return (
         <>
             <Encabezado />
-            <Navbar />
                 <>
                     <div className="producto">
                         <div className="formato">

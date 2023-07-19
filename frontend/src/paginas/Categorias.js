@@ -9,7 +9,7 @@ function Categorias() {
     return (
         <>
             <Encabezado />
-            <Navbar />
+
 
                 <h2>Categorias</h2>
                 <main>
