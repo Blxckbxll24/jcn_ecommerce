@@ -178,6 +178,7 @@ import Footer from "../componentes/Pie_de_pagina";
 import '../estilos/Login.css'
 import { Link, useNavigate } from "react-router-dom";
 import axios from 'axios';
+import jwt_decode from 'jwt-decode'
 
 function Login() {
     const [campos, setCampos] = useState({
@@ -187,6 +188,17 @@ function Login() {
     const [error, setError] = useState('');
     //redireccionamiento
     const navegacion = useNavigate();
+    const [rol_id,setRolId]= useState(null)
+
+    const redireccionar=(rol_id)=>{
+        if (rol_id===1){
+            navegacion('1');
+        }else if(rol_id===2) {
+            navegacion('/dashboard')
+        }else{
+            setError('usuario desconocido')
+        }
+    }
 
     const acceder = (e) => {
         e.preventDefault();
@@ -237,7 +249,7 @@ function Login() {
                         <Link to='/registro'>Registrarse</Link>
                     </div>
                     <button type="submit" className="boton">
-                        <a href="" className="link">
+                        <a href="/" className="link">
                             Entrar
                         </a>
                     </button>

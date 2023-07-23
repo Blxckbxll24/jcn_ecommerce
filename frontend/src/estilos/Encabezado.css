@@ -116,3 +116,13 @@ header {
     color: white;
     margin-left: 10px;
   }
+  
+  .contador {
+    position: absolute;
+    background-color: #000000; /* Add background color */
+    color: #ffffff; /* Add text color */
+    padding: 2px 8px; /* Add padding to adjust the size */
+    border-radius: 50%; /* Make it circular */
+    font-size: 12px; /* Adjust font size */
+    margin-left: -10px; /* Position it next to the carrito icon */
+  }

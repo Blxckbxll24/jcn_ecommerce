@@ -253,68 +253,69 @@ function Ausers() {
       </Table>
 
       <Modal show={showAddModal} onHide={handleCloseAddModal}>
-    <Modal.Header closeButton>
-      <Modal.Title>Agregar Usuario</Modal.Title>
-    </Modal.Header>
-    <Modal.Body>
-      <Form>
-        <Form.Group controlId="formUsername">
-          <Form.Label>Nombre de usuario</Form.Label>
-          <Form.Control
-            type="text"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-          />
-        </Form.Group>
+        <Modal.Header closeButton>
+          <Modal.Title>Agregar Usuario</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group controlId="formUsername">
+              <Form.Label>Nombre de usuario</Form.Label>
+              <Form.Control
+                type="text"
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
+              />
+            </Form.Group>
 
-        <Form.Group controlId="formEmail">
-          <Form.Label>Correo electrónico</Form.Label>
-          <Form.Control
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-          />
-        </Form.Group>
+            <Form.Group controlId="formEmail">
+              <Form.Label>Correo electrónico</Form.Label>
+              <Form.Control
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
 
-        <Form.Group controlId="formPhoneNumber">
-          <Form.Label>Número de teléfono</Form.Label>
-          <Form.Control
-            type="text"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-        </Form.Group>
+            <Form.Group controlId="formPhoneNumber">
+              <Form.Label>Número de teléfono</Form.Label>
+              <Form.Control
+                type="text"
+                value={phoneNumber}
+                onChange={(e) => setPhoneNumber(e.target.value)}
+              />
+            </Form.Group>
 
-        <Form.Group controlId="formPassword">
-          <Form.Label>Contraseña</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-          />
-        </Form.Group>
+            <Form.Group controlId="formPassword">
+              <Form.Label>Contraseña</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
 
-        <Form.Group controlId="formStatus">
-          <Form.Label>Estatus</Form.Label>
-          <Form.Control
-            as="select"
-            value={status}
-            onChange={(e) => setStatus(parseInt(e.target.value))}
-          >
-            {statusOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </Form.Control>
-        </Form.Group>
-      </Form>
-    </Modal.Body>
-    <Modal.Footer>
-      <Button variant="secondary" onClick={handleCloseAddModal}>Cancelar</Button>
-      <Button variant="primary" onClick={handleAddUser}>Agregar</Button>
-    </Modal.Footer>
-  </Modal>
+            <Form.Group controlId="formStatus">
+            <Form.Label>Estatus</Form.Label>
+            <Form.Control
+              as="select"
+              value={status}
+              onChange={(e) => setStatus(e.target.value)}
+            >
+              {statusOptions.map((option) => (
+                <option key={option.value} value={option.value}>
+                  {option.label}
+                </option>
+              ))}
+            </Form.Control>
+          </Form.Group>
+        </Form>
+
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseAddModal}>Cancelar</Button>
+          <Button variant="primary" onClick={handleAddUser}>Agregar</Button>
+        </Modal.Footer>
+      </Modal>
 
       <Modal show={showEditModal} onHide={handleCloseEditModal}>
         <Modal.Header closeButton>

@@ -1,16 +1,25 @@
-
-footer{
-    background: #000000;
-    padding: 30px;
+footer {
+    background-color: #000000;
+    color: #fff;
     text-align: center;
-    color:#ffffff;
-    margin-top: 30px;
+    padding: 20px;
+   
+}
+
+.footer-content {
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* Cambiar el color del texto del enlace en el footer */
+footer a {
+    color: #fff;
     
 }
-.admin{
-    background-color: #000000;
-}
 
-.admin-1{
-    background-color: #000000;
+/* Cambiar el color del texto del enlace al pasar el mouse por encima */
+footer a:hover {
+    color: #ffcc00;
 }

@@ -1,0 +1,63 @@
+.pago{
+    background-color: rgb(187, 55, 34);
+    text-align: center;
+    width: 50%;
+    margin-left: 420px;
+    margin-top: 20px;
+    border-radius: 10px;
+    color: white;
+    padding-top: 0;
+    padding-bottom: 80px;
+    height: 600px;
+}   
+.diamonds{
+    font-size: 50px;
+    font-weight: normal;
+}
+.clase1{
+    margin-top: 15px;
+    font-size: 25px;
+}
+.foto{
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-radius: 1em;
+
+}
+.pedido{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.central{
+    font-size: 20px;
+    margin-left: 430px;
+    margin-top: 20px;
+}
+.col{
+    font-size: 30px;
+}
+
+.icon{
+    display: flex;
+    width: 100px;
+    margin-left: 350px;
+}
+.volver{
+    margin-top: 10px;
+    height: 60px;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 40%;
+    border: none;
+    border-radius: .2em;
+    background-color: antiquewhite;
+}
+.volver:hover{
+    background-color:aqua;
+    cursor: pointer;
+}
+.casa{
+    margin-bottom: -7px;
+    width: 10%;   
+}

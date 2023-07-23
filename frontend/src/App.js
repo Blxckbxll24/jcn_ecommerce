@@ -21,9 +21,15 @@ import Ausers from './paginas/AdminUsers';
 import Todos from './paginas/Todos';
 import PrivateRoute from './componentes/Ruta-Privada';
 import APedidos from './paginas/AdminPedidos';
+import Protectedroute from './componentes/Ruta-Privada';
+import { useLocalStorage } from 'react-use';
+import PagoRealizado from './paginas/Pago_Procesado';
+
+
 
 
 function App() {
+  const [adminToken, setadminToken]= useLocalStorage('adminToken');
   return (
     <BrowserRouter>
     <Routes>
@@ -40,7 +46,9 @@ function App() {
       <Route path='/Higiene' element={<Higiene/>}></Route>
       <Route path='/Medicamentos' element={<Medicamentos/>}></Route>
       <Route path='/login' element={<Login/>}></Route>
+      <Route element={<Protectedroute canActivate={true} />}>
       <Route path='/dashboard' element={<Dashboard/>}></Route>
+      </Route>
       <Route path='/loginadmin' element={<LoginAdmin/>}></Route>
       <Route path='/admincategorias' element={<ACategorias/>}></Route>
       <Route path='/adminproductos' element={<AProductos/>}></Route>
@@ -49,6 +57,8 @@ function App() {
       <Route path='/adminpedidos' element={<APedidos/>}></Route>
       {/* <Route path="/loginadmin" element={<PrivateRoute element={<LoginAdmin />} />} />
         <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} /> */}
+        <Route path='/pagoexitoso' element={<PagoRealizado/>}></Route>
+      
 
 
     </Routes>

@@ -1,17 +1,14 @@
-import React from 'react';
-import { Route, Navigate } from 'react-router-dom';
+import { Navigate, Outlet } from "react-router-dom";
 
-const PrivateRoute = ({ element: Component, ...rest }) => {
-  const adminToken = localStorage.getItem('adminToken');
+const Protectedroute =({
+canActivate,
+redirectPath = '/'
 
-  // Verificar si el token de administrador existe y es válido
-  const isAuthenticated = adminToken && adminToken !== 'undefined';
+})=>{
+  if(!canActivate){
+return <Navigate to={redirectPath} replace/>
+  }
+  return <Outlet/>
+}
 
-  return isAuthenticated ? (
-    <Route {...rest} element={<Component />} />
-  ) : (
-    <Navigate to="/loginadmin" replace={true} />
-  );
-};
-
-export default PrivateRoute;
+export default Protectedroute;

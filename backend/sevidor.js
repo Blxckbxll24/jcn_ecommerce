@@ -3,7 +3,6 @@ import mysql from "mysql";
 import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import bodyParser from "body-parser";
-import multer from "multer";
 import path from 'path';
 
 
@@ -26,6 +25,10 @@ conexion.connect(function (error) {
         console.log("conectado exitosamente")
     }
 });
+// const multer  = require('multer')
+// const upload = multer({ dest: 'uploads/' })
+
+
 
 //consultar la lista de mascotas
 app.get('/obtenercategorias', (peticion, respuesta) => {
@@ -356,6 +359,37 @@ app.delete('/adminpedidos/:num_pedido', (peticion, respuesta) => {
         return respuesta.json({ ESTATUS: "ERROR", Error: "Error al eliminar el pedido" });
       }
       return respuesta.json({ ESTATUS: "EXITOSO", mensaje: "Pedido eliminado correctamente" });
+    });
+  });
+
+  app.post('/crearorden', (req, res) => {
+    // Obtener los datos de la orden desde el cuerpo de la solicitud
+    const { usuarioId, fechaCompra, estado, total, productos } = req.body;
+  
+    // Insertar la orden en la base de datos
+    const sqlOrden = 'INSERT INTO Ordenes (usuario_iD, fecha_compra, Estado, Total) VALUES (?, ?, ?, ?)';
+    conexion.query(sqlOrden, [usuarioId, fechaCompra, estado, total], (error, resultado) => {
+      if (error) {
+        console.error('Error al crear la orden en la base de datos:', error);
+        return res.status(500).json({ mensaje: 'Error al crear la orden en la base de datos' });
+      }
+  
+      // Obtener el ID de la orden recién creada
+      const ordenId = resultado.insertId;
+  
+      // Insertar los productos de la orden en la base de datos
+      const sqlProductoOrden = 'INSERT INTO orden_productos (orden_id, producto_id, Nombre_producto, Precio, Cantidad) VALUES (?, ?, ?, ?, ?)';
+      productos.forEach(producto => {
+        conexion.query(sqlProductoOrden, [ordenId, producto.id, producto.nombre, producto.precio, producto.cantidad], (error, resultado) => {
+          if (error) {
+            console.error('Error al agregar los productos de la orden en la base de datos:', error);
+            return res.status(500).json({ mensaje: 'Error al agregar los productos de la orden en la base de datos' });
+          }
+        });
+      });
+  
+      // Respuesta exitosa
+      return res.json({ mensaje: 'Orden creada exitosamente' });
     });
   });
 

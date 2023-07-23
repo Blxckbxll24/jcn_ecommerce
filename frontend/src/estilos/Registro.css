@@ -6,10 +6,15 @@
     
 }
 .login{
-    background-color: #8EC680;
+    background-color: brown;
     width: 40%;
     padding: 10px;
     border-radius: .4rem;
+
+}
+.login h2{
+    color: white;
+
 }
 .btn{
     width: 100%;
@@ -23,9 +28,10 @@
     width: 10%;
     cursor: pointer;
 }
-p .uno {
+ .uno {
     text-align: center;
     font-weight: bold;
+    color: white;
 }
 .metodos{
     display: inline-flex;
