@@ -9,7 +9,7 @@ function Higiene() {
         <>
         <>
             <Encabezado />
-            <h1>-Higiene-</h1>
+            <h1 className="klan"> Higiene </h1>
             <CHigiene />
            
         </>

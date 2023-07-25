@@ -25,21 +25,23 @@ function CTodos() {
     // Función para agregar un producto al carrito
     const addToCart = (id, productName, price) => {
         if (!isLoggedIn) {
-            // Si el usuario no está autenticado, mostrar una alerta o redirigir a la página de inicio de sesión
-            alert("Por favor, inicia sesión antes de agregar elementos al carrito.");
-            // O redirigir a la página de inicio de sesión con useHistory
-            // history.push('/login');
-            return;
+          alert("Por favor, inicia sesión antes de agregar elementos al carrito.");
+          return;
         }
-
-        const cartItem = { id, productName, price, quantity: 1 };
-        // Aquí puedes usar localStorage o el estado del componente donde tengas el carrito
-        // Por simplicidad, vamos a utilizar localStorage aquí
+    
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push(cartItem);
+        const existingItemIndex = cart.findIndex(item => item.id === id);
+    
+        if (existingItemIndex !== -1) {
+          cart[existingItemIndex].quantity += 1;
+        } else {
+          const cartItem = { id, productName, price, quantity: 1 };
+          cart.push(cartItem);
+        }
+    
         localStorage.setItem('cart', JSON.stringify(cart));
-        
-    };
+        alert("El producto ha sido agregado al carrito correctamente.");
+      };
 
     return (
         <div>

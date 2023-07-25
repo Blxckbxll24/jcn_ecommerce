@@ -10,7 +10,7 @@ function Nosotros() {
             <Encabezado />
             
                 <main>
-                <h1 class="klan">Nosotros</h1>
+                <h1 className="klan">Nosotros</h1>
 
 <div class="baha">
    <div class="lxp1">

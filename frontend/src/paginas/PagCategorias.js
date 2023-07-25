@@ -8,7 +8,7 @@ function PagCategorias() {
     return (
         <>
             <Encabezado />
-            <h1>-Categorias-</h1>
+            <h1 className="klan">Categorias</h1>
             <Categorias2/>
             <Footer/>
         </>

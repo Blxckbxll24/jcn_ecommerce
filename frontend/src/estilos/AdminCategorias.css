@@ -50,17 +50,20 @@ td {
     border:none;
     border-radius: 25px;
     width: 100px;
-
+    height: 35px;
+    transform: translate(10%,15%);
 }
 
 #azul{
+    margin-bottom: 10px;
+    height: 35px;
     background-color: blue;
     color: white;
     border:none;
     border-radius: 25px;
     width: 100px;
-    margin-left: 15px;
-    
+    margin-left: 10px;
+    transform: translate(10%,15%);
 }
 .but{
     clear: both;

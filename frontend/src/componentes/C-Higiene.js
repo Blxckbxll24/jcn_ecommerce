@@ -24,25 +24,41 @@ function CHigiene() {
     }, []);
 
     // Función para agregar un producto al carrito
-    const addToCart = (id,productName, price) => {
+    const addToCart = (id, productName, price) => {
         if (!isLoggedIn) {
-            // Si el usuario no está autenticado, mostrar una alerta o redirigir a la página de inicio de sesión
-            alert("Por favor, inicia sesión antes de agregar elementos al carrito.");
-            // O redirigir a la página de inicio de sesión con useHistory
-            // history.push('/login');
-            return;
+          // Si el usuario no está autenticado, mostrar una alerta o redirigir a la página de inicio de sesión
+          alert("Por favor, inicia sesión antes de agregar elementos al carrito.");
+          // O redirigir a la página de inicio de sesión con useHistory
+          // history.push('/login');
+          return;
         }
-
-        const cartItem = { id,productName, price, quantity: 1 };
-        // Aquí puedes usar localStorage o el estado del componente donde tengas el carrito
-        // Por simplicidad, vamos a utilizar localStorage aquí
+    
+        // Recuperar el carrito actual desde el almacenamiento local o crear uno nuevo si no existe
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push(cartItem);
+    
+        // Buscar si el producto ya está en el carrito
+        const existingItemIndex = cart.findIndex(item => item.id === id);
+    
+        if (existingItemIndex !== -1) {
+          // El producto ya está en el carrito, aumentar la cantidad
+          cart[existingItemIndex].quantity += 1;
+        } else {
+          // El producto no está en el carrito, agregarlo como un nuevo elemento en el carrito
+          const cartItem = { id, productName, price, quantity: 1 };
+          cart.push(cartItem);
+        }
+    
+        // Guardar el carrito actualizado en el almacenamiento local
         localStorage.setItem('cart', JSON.stringify(cart));
+    
+        // Actualizar el contador del carrito si es necesario
         if (typeof window !== 'undefined' && window.updateCartItemCount) {
-            window.updateCartItemCount();}
-        
-    };
+          window.updateCartItemCount();
+        }
+    
+        alert("El producto ha sido agregado al carrito correctamente.");
+      };
+    
 
     return (
        

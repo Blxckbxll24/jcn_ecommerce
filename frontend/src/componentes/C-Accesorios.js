@@ -93,20 +93,31 @@ function CAccesorios() {
     // Función para agregar un producto al carrito
     const addToCart = (id, productName, price) => {
         if (!isLoggedIn) {
-            // Si el usuario no está autenticado, mostrar una alerta o redirigir a la página de inicio de sesión
-            alert("Por favor, inicia sesión antes de agregar elementos al carrito.");
-            // O redirigir a la página de inicio de sesión con useHistory
-            // history.push('/login');
-            return;
+          // Si el usuario no está autenticado, mostrar una alerta o redirigir a la página de inicio de sesión
+          alert("Por favor, inicia sesión antes de agregar elementos al carrito.");
+          // O redirigir a la página de inicio de sesión con useHistory
+          // history.push('/login');
+          return;
         }
-
-        const cartItem = { id, productName, price, quantity: 1 };
-
-        let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        cart.push(cartItem);
-        localStorage.setItem('cart', JSON.stringify(cart));
-        
-    };
+    
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+        const existingItemIndex = cart.findIndex(item => item.id === id);
+    
+        if (existingItemIndex !== -1) {
+          // El producto ya está en el carrito, aumentar la cantidad
+          const updatedCart = [...cart];
+          updatedCart[existingItemIndex].quantity += 1;
+          localStorage.setItem('cart', JSON.stringify(updatedCart));
+        } else {
+          // El producto no está en el carrito, agregarlo
+          const cartItem = { id, productName, price, quantity: 1 };
+          const updatedCart = [...cart, cartItem];
+          localStorage.setItem('cart', JSON.stringify(updatedCart));
+        }
+    
+        alert("El producto ha sido agregado al carrito correctamente.");
+      };
+    
 
     return (
         <div className="carta">
@@ -123,6 +134,7 @@ function CAccesorios() {
                                     <button
                                         className="btn btn-primary"
                                         onClick={() => addToCart(accesorios.id_Producto, accesorios.Nombre_Producto, accesorios.Precio)}
+                                        
                                     >
                                         Agregar al carrito
                                     </button>

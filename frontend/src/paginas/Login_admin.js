@@ -105,7 +105,7 @@ function LoginAdmin() {
                     setError(respuesta.data.Error);
                 }
             })
-            .catch(error => console.log("hay un error"));
+            .catch(error => alert("error en el correo o la contraseña"));
     }
 
     return (
@@ -113,7 +113,7 @@ function LoginAdmin() {
             <Encabezado />
             <div className="box">
                 <form onSubmit={acceder}>
-                    <h2>Inicio Sesion</h2>
+                    <h2>Inicio Sesión</h2>
                     <div className="inputBox">
                         <input type="email" className="net" required="required" onChange={(e) => setCampos({ ...campos, correo_electronico: e.target.value })} />
                         <span>Correo Electronico</span>

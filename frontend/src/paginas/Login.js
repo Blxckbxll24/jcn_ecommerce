@@ -223,7 +223,7 @@ function Login() {
 <>
             <div className="box">
                 <form onSubmit={acceder}>
-                    <h2>Inicio Sesion</h2>
+                    <h2>Inicio Sesión</h2>
                     <div className="inputBox">
                         <input
                             type="email"

@@ -398,7 +398,7 @@ app.delete('/adminpedidos/:id', (peticion, respuesta) => {
     });
   });
   app.get('/adminordenes', (peticion, respuesta) => {
-    const sql = "SELECT * FROM orden";
+    const sql = "SELECT * FROM ordenes";
     conexion.query(sql, (error, resultado) => {
         // if (error) return respuesta.json({ Respuesta: "Error" })
         // return respuesta.json({ ESTATUS: "EXITOSO", contenido: resultado });

@@ -9,7 +9,7 @@ function Medicamentos() {
         <>
         <>
             <Encabezado />
-            <h1>-Medicamentos-</h1>
+            <h1 className="klan">Medicamentos</h1>
             <CMedicamentos />
            
         </>

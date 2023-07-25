@@ -243,6 +243,7 @@ function Ausers() {
             <th scope="col">id</th>
             <th scope="col">nombre</th>
             <th scope="col">email</th>
+            <th scope="col">estatus</th>
             <th scope="col">Botones</th>
           </tr>
         </thead>
@@ -252,6 +253,7 @@ function Ausers() {
               <th scope="row">{ausers.id}</th>
               <td>{ausers.nombre_usuario}</td>
               <td>{ausers.correo_electronico}</td>
+              <td>{ausers.estatus}</td>
               <td>
               <div className='pedidos'>
                 <button onClick={() => handleShowEditModal(ausers)}><svg width="16" height="16" fill="currentColor" className="bi bi-pencil-fill" viewBox="0 0 16 16">

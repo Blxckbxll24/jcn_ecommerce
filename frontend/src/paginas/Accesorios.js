@@ -9,7 +9,7 @@ function Accesorios() {
         <>
         <>
             <Encabezado />
-            <h1>-Accesorios-</h1>  
+            <h1 className="klan">Accesorios</h1>  
             <CAccesorios />
            
         </>

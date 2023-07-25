@@ -43,6 +43,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    font-weight: bold;
   }
   
   .headerimg img {
@@ -63,7 +64,7 @@ header {
   /* Cambiar el color del texto en el navbar */
   .navbar-nav .nav-link {
     color: #fff; /* Texto en color blanco, puedes cambiarlo por otro color */
-    margin: 0 10px; /* Añadir espacios horizontales entre las opciones del menú */
+    margin: 0 3px; /* Añadir espacios horizontales entre las opciones del menú */
   }
   
   /* Cambiar el color del texto cuando se pasa el cursor por encima */
