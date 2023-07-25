@@ -31,7 +31,7 @@ function Categorias2() {
                     return <>
 
                         <div className="card" key={categoria.id_Categoria}>
-                            <img src={require('../imagenes/'+categoria.fotos)} alt="Nombre del producto" />
+                            <img src={require('/Users/emmag/Desktop/trabajo/jcn_ecommerce/backend/public/imagenes/'+categoria.fotos)} alt="Nombre del producto" />
                             <div className="card-body">
                                 <h5 className="card-title">{categoria.Nombre_Categoria}</h5>
                                 <p className="card-text">{categoria.Descripcion}</p>
@@ -40,18 +40,6 @@ function Categorias2() {
                             </div>
                         </div>
 
-                        {/* <div className="card w-25 px-2">
-                            <Link src="../imagenes/sin-portada.jpg" className="card-img-top" alt="..." />
-                            <div className="card-body">
-                                <h5 className="card-title">{categoria.Nombre_Categoria}</h5>
-                                <p className="card-text">
-                                    {categoria.Descripcion}
-                                </p>
-                                <Link to="#" className="btn btn-primary">
-                                    ir a {categoria.Nombre_Categoria}
-                                </Link>
-                            </div>
-                        </div> */}
 
                     </>
 

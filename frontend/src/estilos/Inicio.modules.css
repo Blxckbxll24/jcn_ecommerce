@@ -1,0 +1,108 @@
+.klan{
+    padding: 20px;
+    width: auto;
+    font-size: 5em;
+    text-align: center;
+}
+/* Bloque A que nos dedicamos*/
+.baha{
+    background-color: rgb(232, 142, 82);
+    display: flex;   
+    color: white;
+}
+.lxp1{
+    padding-top: 95px;
+    width: 70%;
+}
+.subtitulo{
+    font-size: 30px;
+    font-style: italic;
+    text-align: center;
+}
+.p1{
+    font-size: 20px;
+    text-align: justify;
+    margin-top: 20px;
+    padding-left:20px;
+    padding-right: 20px;
+}
+.nosotros11{
+    width: 100%;
+    height: 99.9%;
+}
+
+/* Bloque quienes somos*/
+.baha2{
+    background-color: #9b6041dc;
+    display: flex;
+    color: white;
+}
+.nosotros22{
+    width: 143.6%;
+    height: 99.9%;
+}
+.lxp2{
+    margin-left: 290px;
+    height: 350px;
+    width: 50%;
+    float: right;
+    padding-top: 100px;
+}
+.p2{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 20px;
+    font-size: 20px;
+    text-align: justify;
+}
+/* Bloque Mision*/
+.baha3{
+    background-color: rgb(232, 142, 82);
+    display: flex;   
+}
+.lxp3{
+    padding-top: 140px;
+    width: 69.5%;
+    background-color: rgb(232, 142, 82);
+    color: white;
+}
+.p3{
+    font-size: 20px;
+    text-align:justify;
+    margin-top: 20px;
+    padding-left:20px;
+    padding-right: 20px;
+}
+.nosotros33{
+    width: 100%;
+    height: 100%;
+}
+
+.baha4{
+    background-color: #9b6041dc;
+    display: flex;
+}
+.nosotros4{
+    width: 153.8%;
+    height: 99.9%;
+}
+.nosotros4:hover{
+    transform:scale(.9);
+    cursor: pointer;
+}
+.lxp4{
+    margin-left: 257px;
+    height: 390px;
+    width: 71%;
+    background-color: #9b6041dc;
+    float: right;
+    padding-top: 115px;
+    color: white;
+}
+.p4{
+    padding-left: 20px;
+    padding-right: 20px;
+    margin-top: 15px;
+    font-size: 20px;
+    text-align: justify;
+}

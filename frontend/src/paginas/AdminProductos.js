@@ -151,7 +151,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Button, Modal } from 'react-bootstrap';
 import '../estilos/AdminCategorias.css';
 import ANavbar from '../componentes/Navdash';
@@ -167,10 +167,15 @@ function AProductos() {
   const [idProveedor, setIdProveedor] = useState('');
   const [idCategoria, setIdCategoria] = useState('');
   const [descripcion, setDescripcion] = useState('');
-  const [foto, setFoto] = useState(null);
   const [showEliminarModal, setShowEliminarModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCategorias, setFilteredCategorias] = useState([]);
+  const [selectedImage, setSelectedImage] = useState(null);
+  
+  
+  const navigate = useNavigate();
+
+
 
   useEffect(() => {
     axios.get('http://localhost:8082/adminproductos')
@@ -199,18 +204,32 @@ function AProductos() {
     setDescripcion('');
   };
 
-  const handleGuardarClick = () => {
-    const nuevoProducto = {
-      Nombre_Producto: nombreProducto,
-      Precio: precioProducto,
-      Cantidad_Stock: cantidadStock,
-      id_Proveedor: idProveedor,
-      id_Categoria: idCategoria,
-      Descripcion: descripcion,
-      Estatus: 1,
-    };
+  const handleImageChange = (e) => {
+    const imageFile = e.target.files[0];
+    setSelectedImage(imageFile);
+  };
 
-    axios.post('http://localhost:8082/adminproductos', nuevoProducto)
+  const handleGuardarClick = (e) => {
+    e.preventDefault();
+    if (!nombreProducto || !precioProducto || !cantidadStock || !idProveedor || !idCategoria || !descripcion || !selectedImage) {
+      alert("Por favor, completa todos los campos requeridos.");
+      return;
+    }
+    const formData = new FormData();
+    formData.append('Nombre_Producto', nombreProducto);
+    formData.append('Precio', precioProducto);
+    formData.append('Cantidad_Stock', cantidadStock);
+    formData.append('id_Proveedor', idProveedor);
+    formData.append('id_Categoria', idCategoria);
+    formData.append('Descripcion', descripcion);
+    formData.append('Estatus', 1);
+    formData.append('imagen', selectedImage); // Agregar la imagen al FormData
+
+    axios.post('http://localhost:8082/adminproductos', formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data', // Especificar el tipo de contenido
+      },
+    })
       .then(respuesta => {
         if (respuesta.data.ESTATUS === 'EXITOSO') {
           setAProductos([...AProductos, respuesta.data.contenido]);
@@ -233,10 +252,29 @@ function AProductos() {
     setProductoSeleccionado(null);
   };
 
-  const handleGuardarEdicionClick = () => {
+  const handleGuardarEdicionClick = (e) => {
+    e.preventDefault();
+    if (!productoSeleccionado || !productoSeleccionado.Nombre_Producto || !productoSeleccionado.Precio || !productoSeleccionado.Cantidad_Stock || !productoSeleccionado.id_Proveedor || !productoSeleccionado.id_Categoria || !productoSeleccionado.Descripcion || (!selectedImage && !productoSeleccionado.imagen)) {
+      alert("Por favor, completa todos los campos requeridos.");
+      return;
+    }
     if (!productoSeleccionado) return;
 
-    axios.put(`http://localhost:8082/adminproductos/${productoSeleccionado.id_Producto}`, productoSeleccionado)
+    const formData = new FormData();
+    formData.append('Nombre_Producto', productoSeleccionado.Nombre_Producto);
+    formData.append('Precio', productoSeleccionado.Precio);
+    formData.append('Cantidad_Stock', productoSeleccionado.Cantidad_Stock);
+    formData.append('id_Proveedor', productoSeleccionado.id_Proveedor);
+    formData.append('id_Categoria', productoSeleccionado.id_Categoria);
+    formData.append('Descripcion', productoSeleccionado.Descripcion);
+    formData.append('Estatus', productoSeleccionado.Estatus);
+    formData.append('imagen', selectedImage || productoSeleccionado.imagen); // Usar la imagen seleccionada o la existente
+
+    axios.put(`http://localhost:8082/adminproductos/${productoSeleccionado.id_Producto}`, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data', // Especificar el tipo de contenido
+      },
+    })
       .then(respuesta => {
         if (respuesta.data.ESTATUS === 'EXITOSO') {
           const index = AProductos.findIndex(item => item.id_Producto === productoSeleccionado.id_Producto);
@@ -253,6 +291,7 @@ function AProductos() {
       })
       .catch(error => console.log(error));
   };
+  
   const handleEliminarModalOpen = (producto) => {
     setProductoSeleccionado(producto);
     setShowEliminarModal(true);
@@ -288,6 +327,14 @@ function AProductos() {
   const filteredProductos = AProductos.filter(aproductos =>
     aproductos.Nombre_Producto.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const isLoggedIn = !!localStorage.getItem('adminToken'); //redirigir    copiar y pegar en los demas pags del admin
+
+
+  if (!isLoggedIn) {
+    // Si el usuario no está logueado, redirigir a la página de inicio de sesión
+    navigate('/login');
+    return null; // Puedes retornar algo si deseas mostrar un mensaje o componente mientras redirige
+  }
 
 
   return (
@@ -414,6 +461,15 @@ function AProductos() {
               onChange={(e) => setDescripcion(e.target.value)}
             />
           </div>
+          <div className="form-group">
+          <label htmlFor="imagenProducto">Imagen del Producto:</label>
+          <input
+            type="file"
+            className="form-control"
+            id="imagenProducto"
+            onChange={handleImageChange}
+          />
+        </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleAgregarModalClose}>
@@ -508,6 +564,15 @@ function AProductos() {
               })}
             />
           </div>
+          <div className="form-group">
+          <label htmlFor="imagenProducto">Imagen del Producto:</label>
+          <input
+            type="file"
+            className="form-control"
+            id="imagenProducto"
+            onChange={handleImageChange}
+          />
+        </div>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleEditarModalClose}>

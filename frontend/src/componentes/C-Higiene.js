@@ -50,7 +50,7 @@ function CHigiene() {
             <div className="carta">
                 {Higiene.map((higiene, index) => (
                     <div className="card" key={higiene.id_Producto}>
-                        <img src={require('../imagenes/productos/'+higiene.fotos)}  alt="Nombre del producto" />
+                        <img src={require('/Users/emmag/Desktop/trabajo/jcn_ecommerce/backend/public/imagenes/'+higiene.fotos)}  alt="Nombre del producto" />
                         <div className="card-body">
                             <h5 className="card-title">{higiene.Nombre_Producto}</h5>
                             <p className="card-text">{higiene.Descripcion}</p>

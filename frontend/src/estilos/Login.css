@@ -243,14 +243,14 @@ padding-left: 100px;
     width: 100%;
     margin-top: 10px;
 }
-.boton{
+.boton1{
     margin-top: 10px;
     padding: 10px;
     border-radius:4px;
     border: none;
     font-size: 18px;
 }
-.boton:hover{
+.boton1:hover{
     background-color: rgb(248, 223, 223);
 }
 .link{

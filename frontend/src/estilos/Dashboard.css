@@ -1,6 +1,6 @@
 .dashboard{
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(5, 1fr);
     grid-gap: 15px;
     justify-content: center;
     align-items: center;
@@ -27,7 +27,7 @@ margin-top: 1%;
 .card{
     margin:1 70px;
     border-radius: 10px;
-    width: 70%;
+    width: 80%;
 }
 .card img{
     width:100%;

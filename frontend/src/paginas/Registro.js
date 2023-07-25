@@ -38,84 +38,36 @@ function Registro() {
     <>
       <Encabezado />
 
-      <div className="cadenas">
-        <form className="login" action="" onSubmit={registrar}>
-          <h2>Inicio de Sesión</h2>
-          <div className="form-floating mb-3">
-            <input
-              type="text"
-              className="form-control"
-              id="floatingInput"
-              placeholder="Ingresa tu nombre"
-              required=""
-              name="nombre_usuario"
-              onChange={(e) => setCampos({ ...campos, nombre_usuario: e.target.value })}
-            />
-            <label>Nombre</label>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              type="email"
-              className="form-control"
-              id="floatingInput"
-              placeholder="Contraseña"
-              required=""
-              name="correo_electronico"
-              onChange={(e) => setCampos({ ...campos, correo_electronico: e.target.value })}
-            />
-            <label>Correo Electronico</label>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              type="password"
-              className="form-control"
-              id="floatingPassword"
-              placeholder="ejemoplo@gmail.com"
-              required=""
-              name="contrasenia"
-              onChange={(e) => setCampos({ ...campos, contrasenia: e.target.value })}
-            />
-            <label>Contraseña</label>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              type="password"
-              className="form-control"
-              id="floatingPassword"
-              placeholder="ejemoplo@gmail.com"
-              required=""
-              name="contrasenia"
-              onChange={(e) => setCampos({ ...campos, contrasenia: e.target.value })}
-            />
-            <label>Repetir Contraseña</label>
-          </div>
-          <div className="form-floating mb-3">
-            <input
-              type="number"
-              className="form-control"
-              id="floatingInput"
-              placeholder="Numero de Telefono"
-              required=""
-              name="telefono"
-              onChange={(e) => setCampos({ ...campos, telefono: e.target.value })}
-            />
-            <label>Telefono</label>
-          </div>
-          <button type="submit" className="btn btn-success">
-            Enviar
-          </button>
-          <p className="uno">Puedes iniciar Sesion con:</p>
-          <div className="metodos" />
-          <div className='redes'>          <Link to="https://es-la.facebook.com/">
-            <img src={require('../imagenes/facebook.png')} alt="Facebook" />
-          </Link>
-          <Link to="https://www.instagram.com/">
-            <img src={require('../imagenes/instagram.png')} alt="Instragram" />
-          </Link>
-          </div>
-
-        </form>
+      <div class="container5">
+    <form class="registration-form" onSubmit={registrar}>
+      <h2>Registro de Usuario</h2>
+      <div class="form-group">
+        <label for="nombre" className='label'>Nombre:</label>
+        <input type="text" id="nombre" name="nombre_usuario" required=''
+        onChange={(e) => setCampos({ ...campos, nombre_usuario: e.target.value })}
+        />
       </div>
+      <div class="form-group">
+        <label for="email" className='label'>Email:</label>
+        <input type="email" id="email" name="correo_electronico" required=''
+        onChange={(e) => setCampos({ ...campos, correo_electronico: e.target.value })}
+        />
+      </div>
+      <div class="form-group">
+        <label for="password" className='label'>Contraseña:</label>
+        <input type="password" id="password" name="contrasenia" required=''
+        onChange={(e) => setCampos({ ...campos, contrasenia: e.target.value })}
+        />
+      </div>
+      <div class="form-group">
+        <label for="confirm-password" className='label'>Confirmar Contraseña:</label>
+        <input type="password" id="confirm-password" name="contrasenia" required='' 
+        onChange={(e) => setCampos({ ...campos, contrasenia: e.target.value })}
+        />
+      </div>
+      <button type="submit" className='roka'>Registrarse</button>
+    </form>
+  </div>
 
       <Footer />
     </>

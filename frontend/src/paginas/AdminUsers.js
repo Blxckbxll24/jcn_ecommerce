@@ -59,7 +59,7 @@
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { Modal, Button, Table, Form } from 'react-bootstrap';
 import '../estilos/AdminCategorias.css';
 import ANavbar from '../componentes/Navdash';
@@ -71,7 +71,7 @@ function Ausers() {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedUser, setSelectedUser] = useState(null);
   const [searchTerm, setSearchTerm] = useState('');
-
+  const navigate = useNavigate();
   useEffect(() => {
     axios.get('http://localhost:8082/adminusers')
       .then(respuesta => {
@@ -110,6 +110,10 @@ function Ausers() {
   const [status, setStatus] = useState('1');
 
   const handleAddUser = () => {
+    if (!username || !email || !phoneNumber || !password || !status) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
     const newUser = {
       nombre_usuario: username,
       correo_electronico: email,
@@ -138,6 +142,10 @@ function Ausers() {
   };
 
   const handleUpdateUser = () => {
+    if (!selectedUser || !selectedUser.nombre_usuario || !selectedUser.correo_electronico || !selectedUser.n_telefono || !selectedUser.contrasenia || !selectedUser.estatus) {
+      alert("Por favor, completa todos los campos.");
+      return;
+    }
     axios.put(`http://localhost:8082/adminusers/${selectedUser.id}`, selectedUser)
       .then(response => {
         if (response.data.ESTATUS === 'EXITOSO') {
@@ -200,6 +208,14 @@ function Ausers() {
     user.nombre_usuario.toLowerCase().includes(searchTerm.toLowerCase()) ||
     user.correo_electronico.toLowerCase().includes(searchTerm.toLowerCase())
   );
+  const isLoggedIn = !!localStorage.getItem('adminToken'); //redirigir    copiar y pegar en los demas pags del admin
+
+  if (!isLoggedIn) {
+    // Si el usuario no está logueado, redirigir a la página de inicio de sesión
+    navigate('/loginadmin');
+    return null; // Puedes retornar algo si deseas mostrar un mensaje o componente mientras redirige
+  }
+
 
 
   return (

@@ -128,7 +128,7 @@ function LoginAdmin() {
                         <a href="#">¿Olvidaste tu contraseña?</a>
                         <a href="#">Registrarse</a>
                     </div>
-                    <button type="submit" className="boton">
+                    <button type="submit" className="boton1">
                         Entrar
                     </button>
                 </form>

@@ -11,6 +11,8 @@ import whatsappImage from '../imagenes/whatsapp.png';
 
 
 function Contacto() {
+
+  
   return (
     <>
       <Encabezado />
@@ -37,7 +39,7 @@ function Contacto() {
     <div className="contact-wrapper animated bounceInUp">
       <div className="contact-form">
         <h3 className="spi">Contactanos</h3>
-        <form action="">
+        <form action="https://formsubmit.co/kingkangwebsite@gmail.com" method="POST">
           <p className="worth">
             <label className="tele">Nombre</label>
             <input className="speak" type="text" name="Nombre" />
@@ -65,6 +67,10 @@ function Contacto() {
           </p>
           <p className="block">
             <button className="nabe">Enviar</button>
+            <input type="hidden" name="_next" id="viewAlerta" value={"http://localhost:3000/ContactoProcesado"} />
+            <input type="hidden" name="_captcha" value={"false"} />
+            <input type="hidden" name="_template" value={"table"}/>
+            <input type="hidden" name="_autoresponse" value={"tu mensaje personalizado"}/>
           </p>
         </form>
       </div>

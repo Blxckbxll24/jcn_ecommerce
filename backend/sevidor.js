@@ -4,6 +4,7 @@ import cors from 'cors';
 import jwt from 'jsonwebtoken';
 import bodyParser from "body-parser";
 import path from 'path';
+import multer from "multer";
 
 
 //crear la instancia de express
@@ -27,7 +28,18 @@ conexion.connect(function (error) {
 });
 // const multer  = require('multer')
 // const upload = multer({ dest: 'uploads/' })
+const almacenamiento = multer.diskStorage({
+  destination: (peticion, archivo, funcion) => {
+    funcion(null, 'public/imagenes'); // Asegúrate de que la carpeta 'public/imagenes' exista
+  },
 
+  filename: (peticion, archivo, funcion) => {
+    funcion(null, archivo.originalname);
+  }
+});
+const subirfoto =multer({
+  storage:almacenamiento
+})
 
 
 //consultar la lista de mascotas
@@ -157,18 +169,22 @@ app.get('/adminusers', (peticion, respuesta) => {
 });
 
 // Editar una categoría
-app.put('/admincategorias/:id', (peticion, respuesta) => {
-    const idCategoria = peticion.params.id;
-    const { Nombre_Categoria, Descripcion } = peticion.body;
+app.put('/admincategorias/:id', subirfoto.single('imagen'), (req, res) => {
+  const idCategoria = req.params.id;
+  const { Nombre_Categoria, Descripcion } = req.body;
+  const imagen = req.file ? req.file.filename : null; // Check if an image was uploaded
 
-    const sql = "UPDATE Categoria SET Nombre_Categoria = ?, Descripcion = ? WHERE id_Categoria = ?";
-    conexion.query(sql, [Nombre_Categoria, Descripcion, idCategoria], (error, resultado) => {
-        if (error) {
-            return respuesta.json({ ESTATUS: "ERROR", Error: "Error al editar la categoría" });
-        }
-        return respuesta.json({ ESTATUS: "EXITOSO", contenido: resultado });
-    });
+  const sql = "UPDATE Categoria SET Nombre_Categoria = ?, Descripcion = ?, fotos = ? WHERE id_Categoria = ?";
+  conexion.query(sql, [Nombre_Categoria, Descripcion, imagen, idCategoria], (error, resultado) => {
+      if (error) {
+          return res.json({ ESTATUS: "ERROR", Error: "Error al editar la categoría" });
+      }
+      return res.json({ ESTATUS: "EXITOSO", contenido: resultado });
+  });
 });
+
+
+
 
 // Eliminar una categoría
 app.delete('/admincategorias/:id', (peticion, respuesta) => {
@@ -184,18 +200,22 @@ app.delete('/admincategorias/:id', (peticion, respuesta) => {
 });
 
 
- app.post('/admincategorias', (peticion, respuesta) => {
-     const { Nombre_Categoria, Descripcion } = peticion.body;
 
-     const sql = "INSERT INTO Categoria (Nombre_Categoria, Descripcion) VALUES (?, ?)";
-     conexion.query(sql, [peticion.body.Nombre_Categoria, peticion.body.Descripcion], (error, resultado) => {
-       if (error) {
-             return respuesta.json({ ESTATUS: "ERROR", Error: "Error al agregar la categoría" });
-        }
-         const nuevaCategoria = { id: resultado.insertId, Nombre_Categoria, Descripcion };
-         return respuesta.json({ ESTATUS: "EXITOSO", contenido: nuevaCategoria });
-     });
-});
+
+
+app.post('/admincategorias',subirfoto.single('imagen'),(peticion,respuesta)=>{
+  const sql='insert into categoria(Nombre_Categoria,Descripcion,fotos) values(?)';
+  const datos=[
+      peticion.body.Nombre_Categoria,
+      peticion.body.Descripcion,
+      peticion.file.filename,
+
+  ]
+  conexion.query(sql,[datos],(error,resultado)=>{
+      if (error) return respuesta.json({'Estatus':'ERROR'});
+      return respuesta.json({'ESTATUS':'EXITOSO'})
+  })
+})
 
 
 app.get('/variedad', (peticion, respuesta) => {
@@ -210,31 +230,20 @@ app.get('/variedad', (peticion, respuesta) => {
 });
 
 
-app.post('/admincategorias', (peticion, respuesta) => {
-    const { Nombre_Categoria, Descripcion } = peticion.body;
+// app.post('/admincategorias', (peticion, respuesta) => {
+//     const { Nombre_Categoria, Descripcion } = peticion.body;
 
-    const sql = "INSERT INTO Categoria (Nombre_Categoria, Descripcion) VALUES (?, ?)";
-    conexion.query(sql, [peticion.body.Nombre_Categoria, peticion.body.Descripcion], (error, resultado) => {
-      if (error) {
-            return respuesta.json({ ESTATUS: "ERROR", Error: "Error al agregar la categoría" });
-       }
-        const nuevaCategoria = { id: resultado.insertId, Nombre_Categoria, Descripcion };
-        return respuesta.json({ ESTATUS: "EXITOSO", contenido: nuevaCategoria });
-    });
-});
+//     const sql = "INSERT INTO Categoria (Nombre_Categoria, Descripcion) VALUES (?, ?)";
+//     conexion.query(sql, [peticion.body.Nombre_Categoria, peticion.body.Descripcion], (error, resultado) => {
+//       if (error) {
+//             return respuesta.json({ ESTATUS: "ERROR", Error: "Error al agregar la categoría" });
+//        }
+//         const nuevaCategoria = { id: resultado.insertId, Nombre_Categoria, Descripcion };
+//         return respuesta.json({ ESTATUS: "EXITOSO", contenido: nuevaCategoria });
+//     });
+// });
 
-app.post('/adminproductos', (peticion, respuesta) => {
-    const { Nombre_Producto, Precio, id_Categoria } = peticion.body;
-  
-    const sql = "INSERT INTO Productos (Nombre_Producto, Precio, id_Categoria) VALUES (?, ?, ?)";
-    conexion.query(sql, [Nombre_Producto, Precio, id_Categoria], (error, resultado) => {
-      if (error) {
-        return respuesta.json({ ESTATUS: "ERROR", Error: "Error al agregar el producto" });
-      }
-      const nuevoProducto = { id: resultado.insertId, Nombre_Producto, Precio, id_Categoria };
-      return respuesta.json({ ESTATUS: "EXITOSO", contenido: nuevoProducto });
-    });
-  });
+
 
   app.delete('/adminproductos/:id', (peticion, respuesta) => {
     const idProducto = peticion.params.id;
@@ -290,13 +299,26 @@ app.post('/adminproductos', (peticion, respuesta) => {
     });
   });
 
-  app.post('/adminproductos', (req, res) => {
-    const { Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus } = req.body;
-    const sql = 'INSERT INTO Productos (Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus) VALUES (?, ?, ?, ?, ?, ?, ?)';
-    conexion.query(sql, [Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus], (error, resultado) => {
+  app.post('/adminproductos', subirfoto.single('imagen'), (peticion, respuesta) => {
+    const { Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus } = peticion.body;
+    const imagen = peticion.file ? peticion.file.filename : null; // Check if an image was uploaded
+  
+    const sql = 'INSERT INTO Productos (Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus, fotos) VALUES (?, ?, ?, ?, ?, ?, ?, ?)';
+    const datos = [
+      Nombre_Producto,
+      Precio,
+      Cantidad_Stock,
+      id_Proveedor,
+      id_Categoria,
+      Descripcion,
+      Estatus,
+      imagen,
+    ];
+  
+    conexion.query(sql, datos, (error, resultado) => {
       if (error) {
         console.log(error);
-        res.json({ ESTATUS: 'ERROR', MENSAJE: 'Error al agregar un producto' });
+        return respuesta.json({ ESTATUS: 'ERROR', MENSAJE: 'Error al agregar un producto' });
       } else {
         const nuevoProducto = {
           id: resultado.insertId,
@@ -307,40 +329,54 @@ app.post('/adminproductos', (peticion, respuesta) => {
           id_Categoria,
           Descripcion,
           Estatus,
+          fotos: imagen,
         };
-        res.json({ ESTATUS: 'EXITOSO', contenido: nuevoProducto });
+        return respuesta.json({ ESTATUS: 'EXITOSO', contenido: nuevoProducto });
       }
     });
   });
 
-  app.put('/adminproductos/:id', (peticion, respuesta) => {
+  app.put('/adminproductos/:id', subirfoto.single('imagen'), (peticion, respuesta) => {
     const idProducto = peticion.params.id;
     const { Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus } = peticion.body;
+    const imagen = peticion.file ? peticion.file.filename : null; // Check if an image was uploaded
   
-    const sql = 'UPDATE Productos SET Nombre_Producto = ?, Precio = ?, Cantidad_Stock = ?, id_Proveedor = ?, id_Categoria = ?, Descripcion = ?, Estatus = ? WHERE id_Producto = ?';
-    conexion.query(sql, [Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus, idProducto], (error, resultado) => {
+    // If an image was uploaded, update the "fotos" column in the database as well
+    let sql = '';
+    let datos = [];
+    if (imagen) {
+      sql = 'UPDATE Productos SET Nombre_Producto = ?, Precio = ?, Cantidad_Stock = ?, id_Proveedor = ?, id_Categoria = ?, Descripcion = ?, Estatus = ?, fotos = ? WHERE id_Producto = ?';
+      datos = [Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus, imagen, idProducto];
+    } else {
+      // If no image was uploaded, skip updating the "fotos" column
+      sql = 'UPDATE Productos SET Nombre_Producto = ?, Precio = ?, Cantidad_Stock = ?, id_Proveedor = ?, id_Categoria = ?, Descripcion = ?, Estatus = ? WHERE id_Producto = ?';
+      datos = [Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus, idProducto];
+    }
+  
+    conexion.query(sql, datos, (error, resultado) => {
       if (error) {
+        console.log(error);
         return respuesta.json({ ESTATUS: 'ERROR', MENSAJE: 'Error al actualizar el producto' });
       }
       return respuesta.json({ ESTATUS: 'EXITOSO', mensaje: 'Producto actualizado correctamente' });
     });
   });
   
-  app.delete('/adminproductos/:id', (peticion, respuesta) => {
-    const idProducto = peticion.params.id;
+  // app.delete('/adminproductos/:id', (peticion, respuesta) => {
+  //   const idProducto = peticion.params.id;
   
-    const sql = "DELETE FROM Productos WHERE id_Producto = ?";
-    conexion.query(sql, [idProducto], (error, resultado) => {
-      if (error) {
-        return respuesta.json({ ESTATUS: "ERROR", Error: "Error al eliminar el producto" });
-      }
-      return respuesta.json({ ESTATUS: "EXITOSO", mensaje: "Producto eliminado correctamente" });
-    });
-  });
+  //   const sql = "DELETE FROM Productos WHERE id_Producto = ?";
+  //   conexion.query(sql, [idProducto], (error, resultado) => {
+  //     if (error) {
+  //       return respuesta.json({ ESTATUS: "ERROR", Error: "Error al eliminar el producto" });
+  //     }
+  //     return respuesta.json({ ESTATUS: "EXITOSO", mensaje: "Producto eliminado correctamente" });
+  //   });
+  // });
   
   //consultar la lista de mascotas
 app.get('/adminpedidos', (peticion, respuesta) => {
-    const sql = "select * from Pedidos";
+    const sql = "SELECT * FROM orden_productos";
     conexion.query(sql, (error, resultado) => {
         // if (error) return respuesta.json({ Respuesta: "Error" })
         // return respuesta.json({ ESTATUS: "EXITOSO", contenido: resultado });
@@ -350,11 +386,33 @@ app.get('/adminpedidos', (peticion, respuesta) => {
     });
 });
 
-app.delete('/adminpedidos/:num_pedido', (peticion, respuesta) => {
-    const numPedido = peticion.params.num_pedido;
+app.delete('/adminpedidos/:id', (peticion, respuesta) => {
+    const id = peticion.params.id;
   
-    const sql = "DELETE FROM Pedidos WHERE Num_Pedido = ?";
-    conexion.query(sql, [numPedido], (error, resultado) => {
+    const sql = "DELETE FROM orden_productos WHERE id = ?";
+    conexion.query(sql, [id], (error, resultado) => {
+      if (error) {
+        return respuesta.json({ ESTATUS: "ERROR", Error: "Error al eliminar el pedido" });
+      }
+      return respuesta.json({ ESTATUS: "EXITOSO", mensaje: "Pedido eliminado correctamente" });
+    });
+  });
+  app.get('/adminordenes', (peticion, respuesta) => {
+    const sql = "SELECT * FROM orden";
+    conexion.query(sql, (error, resultado) => {
+        // if (error) return respuesta.json({ Respuesta: "Error" })
+        // return respuesta.json({ ESTATUS: "EXITOSO", contenido: resultado });
+        const json = respuesta.json({ ESTATUS: "EXITOSO", contenido: resultado });
+        return json;
+        //console.log(json); 
+    });
+});
+
+app.delete('/adminordenes/:id', (peticion, respuesta) => {
+    const id = peticion.params.id;
+  
+    const sql = "DELETE FROM ordenes WHERE id = ?";
+    conexion.query(sql, [id], (error, resultado) => {
       if (error) {
         return respuesta.json({ ESTATUS: "ERROR", Error: "Error al eliminar el pedido" });
       }

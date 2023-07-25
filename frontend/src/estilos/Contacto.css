@@ -70,7 +70,9 @@
         margin-right: auto;
         padding: 1.5em;
       }
-      
+      .tele{
+        color: #191313;
+      }
       .more{
         list-style: none;
         padding: 0;

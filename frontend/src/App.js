@@ -22,14 +22,14 @@ import Todos from './paginas/Todos';
 import PrivateRoute from './componentes/Ruta-Privada';
 import APedidos from './paginas/AdminPedidos';
 import Protectedroute from './componentes/Ruta-Privada';
-import { useLocalStorage } from 'react-use';
 import PagoRealizado from './paginas/Pago_Procesado';
+import AOrdenes from './paginas/AdminOrdenes';
+import ContactoPros from './paginas/ContactoProcesado';
 
 
 
 
 function App() {
-  const [adminToken, setadminToken]= useLocalStorage('adminToken');
   return (
     <BrowserRouter>
     <Routes>
@@ -58,6 +58,9 @@ function App() {
       {/* <Route path="/loginadmin" element={<PrivateRoute element={<LoginAdmin />} />} />
         <Route path="/dashboard" element={<PrivateRoute element={<Dashboard />} />} /> */}
         <Route path='/pagoexitoso' element={<PagoRealizado/>}></Route>
+        <Route path='/adminordenes' element={<AOrdenes/>}></Route>
+        <Route path='/ContactoProcesado' element={<ContactoPros/>}></Route>
+
       
 
 

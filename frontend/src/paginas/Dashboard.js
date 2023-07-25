@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { Link } from "react-router-dom";
+import { Link, useNavigate} from "react-router-dom";
 import "../estilos/PagCategorias.css";
 import Encabezado from '../componentes/Encabezado';
 import Navbar from '../componentes/Navbar';
@@ -10,7 +10,15 @@ import "../estilos/Dashboard.css";
 import ANavbar from '../componentes/Navdash';
 
 function Dashboard() {
+    const navigate = useNavigate();
+    const isLoggedIn = !!localStorage.getItem('adminToken'); //redirigir    copiar y pegar en los demas pags del admin
 
+    if (!isLoggedIn) {
+      // Si el usuario no está logueado, redirigir a la página de inicio de sesión
+      navigate('/loginadmin');
+      return null; // Puedes retornar algo si deseas mostrar un mensaje o componente mientras redirige
+    }
+  
     return (
         <>        
         <ANavbar/>
@@ -43,6 +51,15 @@ function Dashboard() {
                                 <p className="card-text"></p>
                                 {/* <h6 className="card-price">${accesorios.Precio}</h6> */}
                                 <Link to="/adminproductos"><button className="btn btn-primary">Ver producto </button></Link>
+                            </div>
+                        </div>
+                        <div className="card" >
+                            <img src={require('../imagenes/orden.png')} alt="Nombre del producto" />
+                            <div className="card-body">
+                                <h5 className="card-title">Ordenes</h5>
+                                <p className="card-text"></p>
+                                {/* <h6 className="card-price">${accesorios.Precio}</h6> */}
+                                <Link to="/adminordenes"><button className="btn btn-primary">Ver pedidos </button></Link>
                             </div>
                         </div>
                         <div className="card" >

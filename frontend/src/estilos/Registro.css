@@ -1,4 +1,4 @@
-.cadenas{
+/* .cadenas{
     margin: 10px;
     padding: 5px;
     justify-content: center;    
@@ -36,4 +36,58 @@
 .metodos{
     display: inline-flex;
     width: 38%;
-}
+} */
+.container5 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .registration-form {
+    background-color: #ad7b06;
+    padding: 45px;
+    border-radius: 10px;
+    box-shadow: 10px 10px 20px rgb(249, 254, 255);
+    width: 450px;
+  }
+  
+  h2 {
+    text-align: center;
+    margin-bottom: 10%;
+    color: #f1f1f1;
+    font-size: 30px;
+
+  }
+  
+  .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #f1f1f1;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+  }
+  
+  .roka{
+    width: 100%;
+    background-color: #ff0000;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  
+  button:hover {
+    background-color: #bb0606;
+  }

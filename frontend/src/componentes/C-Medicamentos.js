@@ -46,7 +46,7 @@ function CMedicamentos() {
             <div className="carta">
                 {Curas.map((curas, index) => (
                     <div className="card" key={curas.id_Producto}>
-                        <img src={require('../imagenes/productos/'+curas.fotos)} alt="Nombre del producto" />
+                        <img src={require('/Users/emmag/Desktop/trabajo/jcn_ecommerce/backend/public/imagenes/'+curas.fotos)} alt="Nombre del producto" />
                         <div className="card-body">
                             <h5 className="card-title">{curas.Nombre_Producto}</h5>
                             <p className="card-text">{curas.Descripcion}</p>

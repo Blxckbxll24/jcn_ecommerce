@@ -1,0 +1,60 @@
+.pros{
+    background-color: rgb(187, 55, 34);
+    text-align: center;
+    width: 50%;
+    margin-left: 420px;
+    margin-top: 50px;
+    border-radius: 10px;
+    color: white;
+    padding-top: 0;
+    padding-bottom: 80px;
+    height: 600px;
+}   
+.diam{
+    font-size: 50px;
+    font-weight: normal;
+}
+.clas{
+    margin-top: 15px;
+    font-size: 25px;
+}
+.spiderman{
+    margin-bottom: 10px;
+    margin-top: 20px;
+    border-radius: 1em;
+    width: 20%;
+}
+.batman{
+    font-size: 20px;
+    margin-top: 10px;
+    margin-bottom: 30px;
+}
+.central{
+    font-size: 20px;
+    margin-left: 430px;
+    margin-top: 20px;
+}
+.superman{
+    display: flex;
+    width: 100px;
+    margin-left: 350px;
+}
+.regresar{
+    margin-top: 10px;
+    height: 70px;
+    font-size: 20px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    width: 40%;
+    border: none;
+    border-radius: .2em;
+    color: black;
+    background-color: antiquewhite
+}
+.regresar:hover{
+    background-color:aqua;
+    cursor: pointer;
+}
+.power{
+    margin-bottom: -7px;
+    width: 10%;   
+}

@@ -248,7 +248,7 @@ function Login() {
                         <a href="#">¿Olvidaste tu contraseña?</a>
                         <Link to='/registro'>Registrarse</Link>
                     </div>
-                    <button type="submit" className="boton">
+                    <button type="submit" className="boton1">
                         <a href="/" className="link">
                             Entrar
                         </a>

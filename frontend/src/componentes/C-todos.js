@@ -46,7 +46,7 @@ function CTodos() {
             <div className="carta">
                 {Todos.map((todos, index) => (
                     <div className="card" key={todos.id_Producto}>
-                        <img src={require('../imagenes/productos/'+todos.fotos)} alt="Nombre del producto" />
+                        <img src={require('/Users/emmag/Desktop/trabajo/jcn_ecommerce/backend/public/imagenes/'+todos.fotos)} alt="Nombre del producto" />
                         <div className="card-body">
                             <h5 className="card-title">{todos.Nombre_Producto}</h5>
                             <p className="card-text">{todos.Descripcion}</p>

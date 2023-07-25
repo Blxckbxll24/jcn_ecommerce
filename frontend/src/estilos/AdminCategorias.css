@@ -72,6 +72,7 @@ td {
 .input-group{
     width: 20%;
     transform: translate(250%,-50%);
+    color: black;
 }
 
 .pedidos button{
@@ -80,5 +81,12 @@ td {
     margin-left: 15px;
     height: 30px;
     width: 30px;
+}
+
+.search-bar input{
+    height: 1cm;
+    width: 200px;
+    margin-left: 800px;
+    margin-bottom: 20px;
 }
 

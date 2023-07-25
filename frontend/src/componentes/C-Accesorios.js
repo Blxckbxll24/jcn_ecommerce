@@ -114,7 +114,7 @@ function CAccesorios() {
                 {Accesorios.map((accesorios, index) => {
                     return (
                         <div className="card" key={accesorios.id_Producto}>
-                            <img src={require('../imagenes/productos/'+accesorios.fotos)} alt="Nombre del producto" />
+                            <img src={require('/Users/emmag/Desktop/trabajo/jcn_ecommerce/backend/public/imagenes/'+accesorios.fotos)} alt="Nombre del producto" />
                             <div className="card-body">
                                 <h5 className="card-title">{accesorios.Nombre_Producto}</h5>
                                 <p className="card-text">{accesorios.Descripcion}</p>

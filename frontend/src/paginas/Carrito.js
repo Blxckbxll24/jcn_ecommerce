@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
+import '../estilos/Carrito.css';
+import Encabezado from '../componentes/Encabezado';
 
 const PAYPAL_CLIENT_ID = 'AdwObl8zvI4sB0iG1UJi85kaIBMaL8wQkh6obtqTqNIrS-z7gVfM7KZB61jlnzC_w9zMzuIJDDeO-DuS';
 
@@ -110,67 +112,78 @@ const Carrito = () => {
   }, [pagoCompletado, navigate]);
 
   return (
-    <div>
-      {!isLoggedIn && navigate('/login')}
-      <PayPalScriptProvider options={{ "client-id": PAYPAL_CLIENT_ID, "currency": "MXN" }}>
-        <div>
-          <h1>Carrito de Compras</h1>
-          <table>
-            <thead>
-              <tr>
-                <th>ID</th>
-                <th>Producto</th>
-                <th>Precio</th>
-                <th>Cantidad</th>
-                <th>Total</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {cartItems.map((item, index) => (
-                <tr key={index}>
-                  <td>{item.id}</td>
-                  <td>{item.productName}</td>
-                  <td>{item.price}</td>
-                  <td>
-                    <button onClick={() => decreaseQuantity(index)}>-</button>
-                    {item.quantity}
-                    <button onClick={() => increaseQuantity(index)}>+</button>
-                  </td>
-                  <td>{item.price * item.quantity}</td>
-                  <td>
-                    <button onClick={() => removeFromCart(index)}>Eliminar</button>
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div>
-            <h2>Total de la compra: {totalPrice}</h2>
-            <button onClick={clearCart}>Vaciar Carrito</button>
-          </div>
-          <div>
-            <PayPalButtons
-              createOrder={(data, actions) => {
-                return actions.order.create({
-                  purchase_units: [
-                    {
-                      amount: {
-                        value: totalPrice,
-                      },
-                    },
-                  ],
-                });
-              }}
-              onApprove={handlePaymentApproval}
-              onError={(error) => {
-                console.error("Error al procesar el pago:", error);
-              }}
-            />
-          </div>
+    <>
+      <Encabezado />
+      <>
+        <div className='smoky'>
+          {!isLoggedIn && navigate('/login')}
+          <PayPalScriptProvider options={{ "client-id": PAYPAL_CLIENT_ID, "currency": "MXN" }}>
+            <div className='quinta '>
+              <div className='solid'>
+            <img src={require('../imagenes/carrito-de-supermercado.png')} className='flash' alt="" />
+            <br></br>
+            <h1 className='wisi'>Carrito de Compras</h1>
+            </div>
+              
+              <table className='tab'>
+                <thead className='thea'>
+                  <tr className='wsx1'>
+                    <th className='nayer'>Producto</th>
+                    <th className='nayer'>Precio</th>
+                    <th className='nayer'>Cantidad</th>
+                    <th className='nayer'>Total</th>
+                    <th className='nayer'>Función</th>
+                  </tr>
+                </thead>
+
+                <tbody className='tbody2'>
+                  {cartItems.map((item, index) => (
+                    <tr className='key' key={index}>
+                      <td className='item'>{item.productName}</td>
+                      <td className='item'>{item.price}</td>
+                      <td className='item'>
+                        <button className='this' onClick={() => decreaseQuantity(index)}>-</button>
+                        {item.quantity}
+                        <button className='this' onClick={() => increaseQuantity(index)}>+</button>
+                      </td>
+                      <td className='item'>{item.price * item.quantity}</td>
+                      <td className='item'>
+                        <button className='eliminar' onClick={() => removeFromCart(index)}>Eliminar</button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className='ms'>
+                <h2 className='compra'>Total de la compra: {totalPrice}</h2>
+                <div className='paypal'>
+                  <button className='vaciar' onClick={clearCart}>Vaciar Carrito</button>
+                
+
+                <PayPalButtons
+                  createOrder={(data, actions) => {
+                    return actions.order.create({
+                      purchase_units: [
+                        {
+                          amount: {
+                            value: totalPrice,
+                          },
+                        },
+                      ],
+                    });
+                  }}
+                  onApprove={handlePaymentApproval}
+                  onError={(error) => {
+                    console.error("Error al procesar el pago:", error);
+                  }}
+                />
+              </div>
+            </div>
+            </div>
+          </PayPalScriptProvider>
         </div>
-      </PayPalScriptProvider>
-    </div>
+      </>
+    </>
   );
 };
 export default Carrito;

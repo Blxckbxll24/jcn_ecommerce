@@ -1,97 +1,43 @@
+.titulo{
+  text-align: center;
+  font-size: 5em;
+}
+.perri{
+  width:30%;
+  margin-top: 20px;
+  float: left;
+  margin-left: 10px;
+  border-radius: 9px;
+}
+.calidad{
+  width: 65%;
+  margin-left: 480px;
+  text-align: justify;
+}
+.yellow{
+  padding-top: 20px;
+}
+.mas{
+  margin-top: 150px;
+  text-align: justify;
+  width: 50%;
+  background-color: yellow;
+  float: left;
+}
+.icon2{
+  width: 20%;
+  margin-top: 100px;
+  margin-left: 0px;
+  float: left;
+}
 
-.container11 {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    overflow-y: auto;
-    min-height: 100vh;
-    position: relative;
-  }
-  
-  .imagenes {
-    width: 100%;
-    height: 300px;
-    overflow: hidden;
-  }
-  
-  .imagenes img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: opacity 0.5s ease-in-out;
-  }
-  
-  .container_1 {
-    display: flex;
-    align-items: flex-start;
-    margin-top: 5%;
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  
-  .texto-container {
-    flex: 1;
-    margin-left: 15px;
-    margin-right: 2%;
-    overflow-y: auto;
-    padding: 10px;
-    text-align: justify;
-  }
-  
-  .image {
-    width: 200px;
-    height: 150px;
-    margin-right: 2%;
-    margin-left: 15px;
-    margin-top: 2%;
-  }
-  
-  .container_2 {
-    display: flex;
-    align-items: flex-start;
-    margin-top: 5%;
-    margin-left: 50px;
-    margin-right: 50px;
-  }
-  
-  .texto-container-2 {
-    flex: 1;
-    margin-left: 2%;
-    margin-right: 15px;
-    overflow-y: auto;
-    padding: 10px;
-    text-align: justify;
-  }
-  
-  .image_2 {
-    width: auto;
-    height: 150px;
-    margin-left: 2%;
-    margin-right: 15px;
-    margin-top: 2%;
-  }
-  
-  p.dos {
-    white-space: pre-wrap;
-  }
+.ut{
+  width: 20%;
+  margin-left: 700px;
+  display: flex;
+}
+.icon3{
+  width: 20%;
+  margin-left: 250px;
 
-  /* header, main, footer {
-    padding: 20px;
-    margin-bottom: 20px;
-    background-color: lightgray;
-  }
-  
-  @media (max-width: 600px) {
-    header, main, footer {
-      padding: 10px;
-    }
-  }
-  
-  @media (max-width: 400px) {
-    header, main, footer {
-      padding: 5px;
-    }
-  } */
-
-  
-  
+}
