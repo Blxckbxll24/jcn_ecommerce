@@ -3,6 +3,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import "../estilos/PagCategorias.css";
 import Carrito from '../paginas/Carrito';
+import swal from 'sweetalert';
 
 function CTodos() {
     const [Todos, setTodos] = useState([]);
@@ -40,7 +41,7 @@ function CTodos() {
         }
     
         localStorage.setItem('cart', JSON.stringify(cart));
-        alert("El producto ha sido agregado al carrito correctamente.");
+        swal("Agregado al carrito","El producto ha sido agregado al carrito correctamente.");
       };
 
     return (

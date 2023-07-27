@@ -63,10 +63,15 @@ app.post('/login', (peticion, respuesta) => {
 
         if (resultado.length > 0) {
             // Generar el token JWT con la información del usuario
+            const usuarios =resultado[0];
             const token = jwt.sign({ usuario: 'administrador' }, 'coto', { expiresIn: '1d' });
             
             // Enviar el token en la respuesta en el campo 'token'
-            return respuesta.json({ Estatus: "CORRECTO", token });
+            respuesta.setHeader('Set-Cookie', `token=${token}`)
+            return respuesta.json({ 
+              Estatus: "CORRECTO",
+               Usuario: token,
+              usuariosId:usuarios.id });
         } else {
             return respuesta.json({ Estatus: "ERROR", Error: "Usuario o contraseña incorrecta" });
         }
@@ -325,7 +330,6 @@ app.get('/variedad', (peticion, respuesta) => {
           Nombre_Producto,
           Precio,
           Cantidad_Stock,
-          id_Proveedor,
           id_Categoria,
           Descripcion,
           Estatus,
@@ -338,19 +342,19 @@ app.get('/variedad', (peticion, respuesta) => {
 
   app.put('/adminproductos/:id', subirfoto.single('imagen'), (peticion, respuesta) => {
     const idProducto = peticion.params.id;
-    const { Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus } = peticion.body;
+    const { Nombre_Producto, Precio, Cantidad_Stock, id_Categoria, Descripcion, Estatus } = peticion.body;
     const imagen = peticion.file ? peticion.file.filename : null; // Check if an image was uploaded
   
     // If an image was uploaded, update the "fotos" column in the database as well
     let sql = '';
     let datos = [];
     if (imagen) {
-      sql = 'UPDATE Productos SET Nombre_Producto = ?, Precio = ?, Cantidad_Stock = ?, id_Proveedor = ?, id_Categoria = ?, Descripcion = ?, Estatus = ?, fotos = ? WHERE id_Producto = ?';
-      datos = [Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus, imagen, idProducto];
+      sql = 'UPDATE Productos SET Nombre_Producto = ?, Precio = ?, Cantidad_Stock = ?, id_Categoria = ?, Descripcion = ?, Estatus = ?, fotos = ? WHERE id_Producto = ?';
+      datos = [Nombre_Producto, Precio, Cantidad_Stock, id_Categoria, Descripcion, Estatus, imagen, idProducto];
     } else {
       // If no image was uploaded, skip updating the "fotos" column
-      sql = 'UPDATE Productos SET Nombre_Producto = ?, Precio = ?, Cantidad_Stock = ?, id_Proveedor = ?, id_Categoria = ?, Descripcion = ?, Estatus = ? WHERE id_Producto = ?';
-      datos = [Nombre_Producto, Precio, Cantidad_Stock, id_Proveedor, id_Categoria, Descripcion, Estatus, idProducto];
+      sql = 'UPDATE Productos SET Nombre_Producto = ?, Precio = ?, Cantidad_Stock = ?, id_Categoria = ?, Descripcion = ?, Estatus = ? WHERE id_Producto = ?';
+      datos = [Nombre_Producto, Precio, Cantidad_Stock, id_Categoria, Descripcion, Estatus, idProducto];
     }
   
     conexion.query(sql, datos, (error, resultado) => {
@@ -398,7 +402,7 @@ app.delete('/adminpedidos/:id', (peticion, respuesta) => {
     });
   });
   app.get('/adminordenes', (peticion, respuesta) => {
-    const sql = "SELECT * FROM ordenes";
+    const sql = "select * from ordenes_usuarios";
     conexion.query(sql, (error, resultado) => {
         // if (error) return respuesta.json({ Respuesta: "Error" })
         // return respuesta.json({ ESTATUS: "EXITOSO", contenido: resultado });
@@ -408,24 +412,26 @@ app.delete('/adminpedidos/:id', (peticion, respuesta) => {
     });
 });
 
-app.delete('/adminordenes/:id', (peticion, respuesta) => {
-    const id = peticion.params.id;
-  
-    const sql = "DELETE FROM ordenes WHERE id = ?";
-    conexion.query(sql, [id], (error, resultado) => {
-      if (error) {
-        return respuesta.json({ ESTATUS: "ERROR", Error: "Error al eliminar el pedido" });
-      }
-      return respuesta.json({ ESTATUS: "EXITOSO", mensaje: "Pedido eliminado correctamente" });
-    });
+app.delete('/adminordenes/:numOrden', (peticion, respuesta) => {
+  const numOrden = peticion.params.numOrden;
+  console.log(numOrden);
+
+  const sql = "DELETE FROM ordenes WHERE Num_orden = ?";
+  conexion.query(sql, [numOrden], (error, resultado) => {
+    if (error) {
+      return respuesta.json({ ESTATUS: "ERROR", Error: "Error al eliminar el pedido" });
+    }
+    return respuesta.json({ ESTATUS: "EXITOSO", mensaje: "Pedido eliminado correctamente" });
   });
+});
+
 
   app.post('/crearorden', (req, res) => {
     // Obtener los datos de la orden desde el cuerpo de la solicitud
     const { usuarioId, fechaCompra, estado, total, productos } = req.body;
   
     // Insertar la orden en la base de datos
-    const sqlOrden = 'INSERT INTO Ordenes (usuario_iD, fecha_compra, Estado, Total) VALUES (?, ?, ?, ?)';
+    const sqlOrden = 'INSERT INTO Ordenes (usuario_id, fecha_compra, estado, total) VALUES (?, ?, ?, ?)';
     conexion.query(sqlOrden, [usuarioId, fechaCompra, estado, total], (error, resultado) => {
       if (error) {
         console.error('Error al crear la orden en la base de datos:', error);

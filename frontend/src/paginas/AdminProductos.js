@@ -1,153 +1,4 @@
-// import React, { useState, useEffect } from 'react';
-// import axios from 'axios';
-// import { Link } from "react-router-dom";
-// import { Button, Modal } from 'react-bootstrap'; // Importamos el componente Modal y Button de react-bootstrap
-// import '../estilos/AdminCategorias.css';
 
-// function AProductos() {
-//   const [AProductos, setAProductos] = useState([]);
-//   const [showAgregarModal, setShowAgregarModal] = useState(false); // Estado para mostrar u ocultar el modal
-//   const [nombreProducto, setNombreProducto] = useState('');
-//   const [precioProducto, setPrecioProducto] = useState('');
-//   const [categoriaProducto, setCategoriaProducto] = useState('');
-
-//   useEffect(() => {
-//     axios.get('http://localhost:8082/adminproductos')
-//       .then(respuesta => {
-//         if (respuesta.data.ESTATUS === "EXITOSO") {
-//           setAProductos(respuesta.data.contenido);
-//         } else {
-//           console.log("Error");
-//         }
-//         console.log(respuesta);
-//       })
-//       .catch(error => console.log(error));
-//   }, []);
-
-//   const handleAgregarModalOpen = () => {
-//     setShowAgregarModal(true);
-//   };
-
-//   const handleAgregarModalClose = () => {
-//     setShowAgregarModal(false);
-//     setNombreProducto('');
-//     setPrecioProducto('');
-//     setCategoriaProducto('');
-//   };
-
-//   const handleGuardarClick = () => {
-//     const nuevoProducto = {
-//       Nombre_Producto: nombreProducto,
-//       Precio: precioProducto,
-//       id_Categoria: categoriaProducto,
-//     };
-
-//     axios.post('http://localhost:8082/adminproductos', nuevoProducto)
-//       .then(respuesta => {
-//         if (respuesta.data.ESTATUS === "EXITOSO") {
-//           setAProductos([...AProductos, respuesta.data.contenido]);
-//           handleAgregarModalClose();
-//         } else {
-//           console.log("Error al guardar el producto");
-//         }
-//         console.log(respuesta);
-//       })
-//       .catch(error => console.log(error));
-//   };
-
-//   return (
-//     <>
-//       <h1 className='titulo_dash'>Categorias</h1>
-//       <div className='but'>
-//         <button id='verde' onClick={handleAgregarModalOpen}>Agregar</button>
-//         <Link to='/dashboard'><button id='azul'>Regresar</button></Link>
-//       </div>
-//       <table className="table">
-//         <thead>
-//           <tr>
-//             <th scope="col">id</th>
-//             <th scope="col">Producto</th>
-//             <th scope="col">Precio</th>
-//             <th scope="col">Categoria</th>
-//             <th scope="col">Opciones</th>
-//           </tr>
-//         </thead>
-//         <tbody>
-//           {AProductos.map((aproductos, index) => (
-//             <tr key={aproductos.id_producto}>
-//               <th scope="row">{aproductos.id_Producto}</th>
-//               <td>{aproductos.Nombre_Producto}</td>
-//               <td>${aproductos.Precio}.00</td>
-//               <td>{aproductos.id_Categoria}</td>
-//               <td>
-//                 <button>
-//                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-pencil-fill" viewBox="0 0 16 16">
-//                     <path d="M12.854.146a.5.5 0 0 0-.707 0L10.5 1.793 14.207 5.5l1.647-1.646a.5.5 0 0 0 0-.708l-3-3zm.646 6.061L9.793 2.5 3.293 9H3.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.5h.5a.5.5 0 0 1 .5.5v.207l6.5-6.5zm-7.468 7.468A.5.5 0 0 1 6 13.5V13h-.5a.5.5 0 0 1-.5-.5V12h-.5a.5.5 0 0 1-.5-.5V11h-.5a.5.5 0 0 1-.5-.5V10h-.5a.499.499 0 0 1-.175-.032l-.179.178a.5.5 0 0 0-.11.168l-2 5a.5.5 0 0 0 .65.65l5-2a.5.5 0 0 0 .168-.11l.178-.178z" />
-//                   </svg>
-//                 </button>
-//                 <button>
-//                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" className="bi bi-trash" viewBox="0 0 16 16">
-//                     <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z" />
-//                     <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z" />
-//                   </svg>
-//                 </button>
-//               </td>
-//             </tr>
-//           ))}
-//         </tbody>
-//       </table>
-
-//       {/* Modal para agregar productos */}
-//       <Modal show={showAgregarModal} onHide={handleAgregarModalClose}>
-//         <Modal.Header closeButton>
-//           <Modal.Title>Agregar Producto</Modal.Title>
-//         </Modal.Header>
-//         <Modal.Body>
-//           <div className="form-group">
-//             <label htmlFor="nombreProducto">Nombre del Producto:</label>
-//             <input
-//               type="text"
-//               className="form-control"
-//               id="nombreProducto"
-//               value={nombreProducto}
-//               onChange={(e) => setNombreProducto(e.target.value)}
-//             />
-//           </div>
-//           <div className="form-group">
-//             <label htmlFor="precioProducto">Precio:</label>
-//             <input
-//               type="number"
-//               className="form-control"
-//               id="precioProducto"
-//               value={precioProducto}
-//               onChange={(e) => setPrecioProducto(e.target.value)}
-//             />
-//           </div>
-//           <div className="form-group">
-//             <label htmlFor="categoriaProducto">Categoría:</label>
-//             <input
-//               type="text"
-//               className="form-control"
-//               id="categoriaProducto"
-//               value={categoriaProducto}
-//               onChange={(e) => setCategoriaProducto(e.target.value)}
-//             />
-//           </div>
-//         </Modal.Body>
-//         <Modal.Footer>
-//           <Button variant="secondary" onClick={handleAgregarModalClose}>
-//             Cancelar
-//           </Button>
-//           <Button variant="primary" onClick={handleGuardarClick}>
-//             Guardar
-//           </Button>
-//         </Modal.Footer>
-//       </Modal>
-//     </>
-//   );
-// }
-
-// export default AProductos;
 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
@@ -164,13 +15,14 @@ function AProductos() {
   const [nombreProducto, setNombreProducto] = useState('');
   const [precioProducto, setPrecioProducto] = useState('');
   const [cantidadStock, setCantidadStock] = useState('');
-  const [idProveedor, setIdProveedor] = useState('');
   const [idCategoria, setIdCategoria] = useState('');
   const [descripcion, setDescripcion] = useState('');
   const [showEliminarModal, setShowEliminarModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [filteredCategorias, setFilteredCategorias] = useState([]);
   const [selectedImage, setSelectedImage] = useState(null);
+  const [categorias, setCategorias] = useState([]);
+
   
   
   const navigate = useNavigate();
@@ -199,7 +51,6 @@ function AProductos() {
     setNombreProducto('');
     setPrecioProducto('');
     setCantidadStock('');
-    setIdProveedor('');
     setIdCategoria('');
     setDescripcion('');
   };
@@ -208,10 +59,20 @@ function AProductos() {
     const imageFile = e.target.files[0];
     setSelectedImage(imageFile);
   };
-
+  function validarCampos() {
+    if (!nombreProducto || !precioProducto || !cantidadStock || !idCategoria || !descripcion || !selectedImage) {
+      alert("Por favor, completa todos los campos requeridos.");
+      return false;
+    }
+    return true;
+  }
+  
   const handleGuardarClick = (e) => {
+    if (!validarCampos()) {
+      return;
+    }
     e.preventDefault();
-    if (!nombreProducto || !precioProducto || !cantidadStock || !idProveedor || !idCategoria || !descripcion || !selectedImage) {
+    if (!nombreProducto || !precioProducto || !cantidadStock || !idCategoria || !descripcion || !selectedImage) {
       alert("Por favor, completa todos los campos requeridos.");
       return;
     }
@@ -219,7 +80,6 @@ function AProductos() {
     formData.append('Nombre_Producto', nombreProducto);
     formData.append('Precio', precioProducto);
     formData.append('Cantidad_Stock', cantidadStock);
-    formData.append('id_Proveedor', idProveedor);
     formData.append('id_Categoria', idCategoria);
     formData.append('Descripcion', descripcion);
     formData.append('Estatus', 1);
@@ -244,6 +104,7 @@ function AProductos() {
 
   const handleEditarModalOpen = (producto) => {
     setProductoSeleccionado(producto);
+    setIdCategoria(producto.id_Categoria);
     setShowEditarModal(true);
   };
 
@@ -254,17 +115,12 @@ function AProductos() {
 
   const handleGuardarEdicionClick = (e) => {
     e.preventDefault();
-    if (!productoSeleccionado || !productoSeleccionado.Nombre_Producto || !productoSeleccionado.Precio || !productoSeleccionado.Cantidad_Stock || !productoSeleccionado.id_Proveedor || !productoSeleccionado.id_Categoria || !productoSeleccionado.Descripcion || (!selectedImage && !productoSeleccionado.imagen)) {
-      alert("Por favor, completa todos los campos requeridos.");
-      return;
-    }
     if (!productoSeleccionado) return;
 
     const formData = new FormData();
     formData.append('Nombre_Producto', productoSeleccionado.Nombre_Producto);
     formData.append('Precio', productoSeleccionado.Precio);
     formData.append('Cantidad_Stock', productoSeleccionado.Cantidad_Stock);
-    formData.append('id_Proveedor', productoSeleccionado.id_Proveedor);
     formData.append('id_Categoria', productoSeleccionado.id_Categoria);
     formData.append('Descripcion', productoSeleccionado.Descripcion);
     formData.append('Estatus', productoSeleccionado.Estatus);
@@ -336,6 +192,11 @@ function AProductos() {
     return null; // Puedes retornar algo si deseas mostrar un mensaje o componente mientras redirige
   }
 
+  const categoriasOptions = [
+    { value: '1', label: 'Accesorios' },
+    { value: '2', label: 'Higiene' },
+    { value: '3', label: 'Medicamentos' },
+  ];
 
   return (
     <>
@@ -358,11 +219,10 @@ function AProductos() {
       <table className="table">
         <thead>
           <tr>
-            <th scope="col">id</th>
+
             <th scope="col">Producto</th>
             <th scope="col">Precio</th>
             <th scope="col">Cantidad en Stock</th>
-            <th scope="col">ID del Proveedor</th>
             <th scope="col">ID de la Categoría</th>
             <th scope="col">Descripción</th>
             <th scope="col">Opciones</th>
@@ -372,12 +232,11 @@ function AProductos() {
           {filteredProductos.map((aproductos, index) => (
 
             <tr key={aproductos.id_producto}>
-              <th scope="row">{aproductos.id_Producto}</th>
               <td>{aproductos.Nombre_Producto}</td>
               <td>${aproductos.Precio}.00</td>
               <td>{aproductos.Cantidad_Stock}</td>
-              <td>{aproductos.id_Proveedor}</td>
               <td>{aproductos.id_Categoria}</td>
+
               <td>{aproductos.Descripcion}</td>
               <td>
                 <div className='pedidos'>
@@ -396,7 +255,6 @@ function AProductos() {
         </tbody>
       </table>
 
-      {/* Modal para agregar productos */}
       <Modal show={showAgregarModal} onHide={handleAgregarModalClose}>
         <Modal.Header closeButton>
           <Modal.Title>Agregar Producto</Modal.Title>
@@ -433,24 +291,22 @@ function AProductos() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="idProveedor">ID del Proveedor:</label>
-            <input
-              type="number"
-              className="form-control"
-              id="idProveedor"
-              value={idProveedor}
-              onChange={(e) => setIdProveedor(e.target.value)}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="idCategoria">ID de la Categoría:</label>
-            <input
-              type="number"
-              className="form-control"
-              id="idCategoria"
-              value={idCategoria}
-              onChange={(e) => setIdCategoria(e.target.value)}
-            />
+          <label htmlFor="idCategoria">Categoría:</label>
+  <select
+    className="form-control"
+    id="idCategoria"
+    value={idCategoria}
+    onChange={(e) => setIdCategoria(e.target.value)}
+  >
+  
+    <option value={0}>Seleccionar</option>
+      
+        {categoriasOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+         </select>
           </div>
           <div className="form-group">
             <label htmlFor="descripcion">Descripción:</label>
@@ -527,30 +383,25 @@ function AProductos() {
             />
           </div>
           <div className="form-group">
-            <label htmlFor="idProveedor">ID del Proveedor:</label>
-            <input
-              type="number"
-              className="form-control"
-              id="idProveedor"
-              value={productoSeleccionado ? productoSeleccionado.id_Proveedor : ''}
-              onChange={(e) => setProductoSeleccionado({
-                ...productoSeleccionado,
-                id_Proveedor: e.target.value,
-              })}
-            />
-          </div>
-          <div className="form-group">
-            <label htmlFor="idCategoria">ID de la Categoría:</label>
-            <input
-              type="number"
-              className="form-control"
-              id="idCategoria"
-              value={productoSeleccionado ? productoSeleccionado.id_Categoria : ''}
-              onChange={(e) => setProductoSeleccionado({
-                ...productoSeleccionado,
-                id_Categoria: e.target.value,
-              })}
-            />
+          <label htmlFor="idCategoria">Categoría:</label>
+          <select
+        className="form-control"
+        id="idCategoria"
+        value={productoSeleccionado ? productoSeleccionado.id_Categoria : ''}
+        onChange={(e) =>
+          setProductoSeleccionado({
+            ...productoSeleccionado,
+            id_Categoria: e.target.value,
+          })
+        }
+      >
+   <option value={0}>Seleccionar</option>
+  {categoriasOptions.map((option) => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+         </select>
           </div>
           <div className="form-group">
             <label htmlFor="descripcion">Descripción:</label>

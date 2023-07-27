@@ -165,7 +165,7 @@ function ACategorias() {
     <>
       <ANavbar />
       <>
-        <h1 className='titulo_dash'>Categorias</h1>
+        <h1 className='titulo_dash'>Categorías</h1>
         <div className='but'>
           <Button id='verde' onClick={handleAgregarModalOpen}>Agregar</Button>
           <Link to='/dashboard'><button id='azul'>Regresar</button></Link>
@@ -173,7 +173,6 @@ function ACategorias() {
         <table className="table">
           <thead>
             <tr>
-              <th scope="col">id</th>
               <th scope="col">Categoria</th>
               <th scope="col">Descripcion</th>
               <th scope="col">Botones</th>
@@ -186,7 +185,6 @@ function ACategorias() {
               }
               return (
                 <tr key={categoria.id_Categoria}>
-                  <th scope="row">{categoria.id_Categoria}</th>
                   <td>{categoria.Nombre_Categoria}</td>
                   <td>{categoria.Descripcion}</td>
                   <td>

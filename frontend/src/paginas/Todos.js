@@ -9,7 +9,7 @@ function Todos() {
         <>
         <>
             <Encabezado />
-            <h1 className="klan"> variedad </h1>
+            <h1 className="klan"> Variedad </h1>
             <CTodos />
            
         </>

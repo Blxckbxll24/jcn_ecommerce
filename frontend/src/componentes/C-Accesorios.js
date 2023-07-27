@@ -71,6 +71,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import "../estilos/PagCategorias.css";
 import Carrito from '../paginas/Carrito';
+import swal from 'sweetalert';
 
 function CAccesorios() {
     const [Accesorios, setAccesorios] = useState([]);
@@ -94,7 +95,7 @@ function CAccesorios() {
     const addToCart = (id, productName, price) => {
         if (!isLoggedIn) {
           // Si el usuario no está autenticado, mostrar una alerta o redirigir a la página de inicio de sesión
-          alert("Por favor, inicia sesión antes de agregar elementos al carrito.");
+          swal("Por favor, inicia sesión antes de agregar elementos al carrito.");
           // O redirigir a la página de inicio de sesión con useHistory
           // history.push('/login');
           return;
@@ -115,7 +116,7 @@ function CAccesorios() {
           localStorage.setItem('cart', JSON.stringify(updatedCart));
         }
     
-        alert("El producto ha sido agregado al carrito correctamente.");
+        swal("Agregado al carrito","El producto ha sido agregado al carrito correctamente.");
       };
     
 

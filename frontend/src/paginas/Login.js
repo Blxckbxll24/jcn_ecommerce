@@ -207,6 +207,7 @@ function Login() {
                 if (respuesta.data.Estatus === "CORRECTO") {
                     // Almacenar el token en el almacenamiento local del navegador
                     localStorage.setItem('token', respuesta.data.Usuario);
+                    localStorage.setItem('usuariosId',respuesta.data.usuariosId);
                     // Redirigir a la página de inicio después de iniciar sesión exitosamente
                     console.log(respuesta.data.Usuario);
                     navegacion('/');

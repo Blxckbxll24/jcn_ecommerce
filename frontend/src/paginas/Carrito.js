@@ -68,9 +68,16 @@ const Carrito = () => {
       navigate('/login');
       return;
     }
+    const usuarioId = localStorage.getItem('usuariosId');
+    console.log(usuarioId)
 
+    if (!usuarioId) {
+      console.error('El usuarioId es nulo o no válido');
+      return; // O maneja el error de alguna otra forma
+    }
+    
     const nuevaOrden = {
-      usuarioId: 1,
+      usuarioId: usuarioId,
       fechaCompra: new Date().toISOString(),
       estado: 'pendiente',
       total: totalPrice,
@@ -85,6 +92,7 @@ const Carrito = () => {
     axios.post('http://localhost:8082/crearorden', nuevaOrden)
       .then(response => {
         console.log(response.data);
+
         clearCart();
         setPagoCompletado(true);
         setContador(0);

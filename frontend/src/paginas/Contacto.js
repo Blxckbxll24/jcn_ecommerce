@@ -35,7 +35,7 @@ function Contacto() {
     href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css"
   />
   <div className="content">
-    <h1 className="logo">Contactanos</h1>
+    <h1 className="logo">Contáctanos</h1>
     <div className="contact-wrapper animated bounceInUp">
       <div className="contact-form">
         <h3 className="spi">Contactanos</h3>

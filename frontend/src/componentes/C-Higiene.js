@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import "../estilos/PagCategorias.css";
 import Carrito from '../paginas/Carrito';
 import Encabezado from './Encabezado';
+import swal from 'sweetalert';
 
 function CHigiene() {
     const [Higiene, setHigiene] = useState([]);
@@ -56,7 +57,7 @@ function CHigiene() {
           window.updateCartItemCount();
         }
     
-        alert("El producto ha sido agregado al carrito correctamente.");
+        swal("Agregado al carrito","El producto ha sido agregado al carrito correctamente.");
       };
     
 
