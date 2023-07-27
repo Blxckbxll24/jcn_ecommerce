@@ -235,21 +235,6 @@ app.get('/variedad', (peticion, respuesta) => {
 });
 
 
-// app.post('/admincategorias', (peticion, respuesta) => {
-//     const { Nombre_Categoria, Descripcion } = peticion.body;
-
-//     const sql = "INSERT INTO Categoria (Nombre_Categoria, Descripcion) VALUES (?, ?)";
-//     conexion.query(sql, [peticion.body.Nombre_Categoria, peticion.body.Descripcion], (error, resultado) => {
-//       if (error) {
-//             return respuesta.json({ ESTATUS: "ERROR", Error: "Error al agregar la categoría" });
-//        }
-//         const nuevaCategoria = { id: resultado.insertId, Nombre_Categoria, Descripcion };
-//         return respuesta.json({ ESTATUS: "EXITOSO", contenido: nuevaCategoria });
-//     });
-// });
-
-
-
   app.delete('/adminproductos/:id', (peticion, respuesta) => {
     const idProducto = peticion.params.id;
   
@@ -365,18 +350,7 @@ app.get('/variedad', (peticion, respuesta) => {
       return respuesta.json({ ESTATUS: 'EXITOSO', mensaje: 'Producto actualizado correctamente' });
     });
   });
-  
-  // app.delete('/adminproductos/:id', (peticion, respuesta) => {
-  //   const idProducto = peticion.params.id;
-  
-  //   const sql = "DELETE FROM Productos WHERE id_Producto = ?";
-  //   conexion.query(sql, [idProducto], (error, resultado) => {
-  //     if (error) {
-  //       return respuesta.json({ ESTATUS: "ERROR", Error: "Error al eliminar el producto" });
-  //     }
-  //     return respuesta.json({ ESTATUS: "EXITOSO", mensaje: "Producto eliminado correctamente" });
-  //   });
-  // });
+
   
   //consultar la lista de mascotas
 app.get('/adminpedidos', (peticion, respuesta) => {
